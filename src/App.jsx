@@ -42,7 +42,7 @@ function App() {
     <div>
       <h1>Movies</h1>
       <ul>
-        {movies.map((movie) => (
+        {trendingMovies.map((movie) => (
           <li key={movie.imdbid}>
             {movie.rank}. {movie.title} ({movie.year})
           </li>
