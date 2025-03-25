@@ -1,6 +1,8 @@
 import { useEffect, useState, useRef } from "react";
 import { createClient } from "@supabase/supabase-js";
 import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router";
+import Home from "./components/pages/home/Home";
 
 function App() {
   const supabaseKey = import.meta.env.VITE_SUPABASE_KEY;
@@ -8,6 +10,7 @@ function App() {
   const supabase = createClient(supabaseUrl, supabaseKey);
   const [movies, setMovies] = useState([]);
   const [trendingMovies, setTrendingMovies] = useState([]);
+
   async function fetchMovies() {
     try {
       let { data: fetchedMovies, error } = await supabase
@@ -37,18 +40,12 @@ function App() {
     fetchTrendingMovies();
   }, []);
 
-  console.log(trendingMovies);
   return (
-    <div>
-      <h1>Movies</h1>
-      <ul>
-        {trendingMovies.map((movie) => (
-          <li key={movie.imdbid}>
-            {movie.rank}. {movie.title} ({movie.year})
-          </li>
-        ))}
-      </ul>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<Home trendingMovies={trendingMovies} />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
