@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
-
+import { CiBookmark, CiSearch } from "react-icons/ci";
 function Home({ trendingMovies }) {
   const [moveIndex, setMoveIndex] = useState(0);
 
@@ -8,9 +8,9 @@ function Home({ trendingMovies }) {
 
   function handleSlide(side) {
     if (side === "left") {
-      setMoveIndex((prevIndex) => (prevIndex === 4 - 1 ? 0 : prevIndex + 1));
-    } else if (side === "right") {
       setMoveIndex((prevIndex) => (prevIndex === 0 ? 4 - 1 : prevIndex - 1));
+    } else if (side === "right") {
+      setMoveIndex((prevIndex) => (prevIndex === 4 - 1 ? 0 : prevIndex + 1));
     }
   }
   return (
@@ -47,6 +47,13 @@ function Home({ trendingMovies }) {
                       className="trending__movie__img"
                     />
                     ;
+                    <div className="bookmark__div">
+                      <CiBookmark className="bookmark__icon" />
+                    </div>
+                    <button className="see__more__btn">
+                      See more
+                      <CiSearch className="search__icon" />
+                    </button>
                   </article>
                 );
               })}

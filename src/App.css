@@ -48,8 +48,9 @@ body {
 }
 
 .trending__movie__card {
-  height: 35rem;
+  height: 45rem;
   width: 25rem;
+  position: relative;
 }
 
 .active__selection {
@@ -58,7 +59,7 @@ body {
 
 .slider {
   width: 100rem;
-  height: 35rem;
+  height: 45rem;
   overflow: hidden;
   position: relative;
   margin: 0 auto;
@@ -101,4 +102,78 @@ body {
   transform: translate(0, -50%);
   right: -1rem;
   z-index: 999;
+}
+
+.trending__movie__card:hover .trending__movie__img {
+  filter: brightness(0.5);
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.bookmark__div {
+  display: none;
+  position: absolute;
+  background-color: #202022cc;
+  width: 3.5rem;
+  height: 3.5rem;
+  top: 0.5rem;
+  right: 0.5rem;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+}
+
+.bookmark__div:hover {
+  background-color: #ffffff;
+  opacity: 0.7;
+
+  cursor: pointer;
+}
+
+.bookmark__div:hover .bookmark__icon {
+  color: #10141e;
+}
+
+.bookmark__icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: #fff;
+}
+
+.trending__movie__card:hover .bookmark__div {
+  display: flex;
+}
+
+.see__more__btn {
+  position: absolute;
+  background-color: #202022cc;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  display: none;
+  align-items: center;
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 200;
+  padding: 0.8rem 2rem;
+  border: 0;
+  gap: 1rem;
+  width: max-content;
+  border-radius: 1rem;
+}
+
+.trending__movie__card:hover .see__more__btn {
+  display: flex;
+}
+
+.see__more__btn:hover {
+  background-color: #ffffff;
+  color: #10141e;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.search__icon {
+  width: 2rem;
+  height: 2rem;
 }
