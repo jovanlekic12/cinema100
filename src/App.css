@@ -12,7 +12,8 @@ body {
   padding: 0;
 }
 
-.slider__section {
+.slider__section,
+.search__section {
   max-width: 110rem;
   margin: 0 auto;
   position: relative;
@@ -55,6 +56,7 @@ body {
 
 .active__selection {
   background-color: #fc4747;
+  transform: scale(1.1);
 }
 
 .slider {
@@ -176,4 +178,124 @@ body {
 .search__icon {
   width: 2rem;
   height: 2rem;
+}
+
+.search__section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10rem;
+  background-color: #161d2f;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.search__div {
+  position: relative;
+}
+
+.search__input {
+  border: none;
+  background-color: hsl(0, 0%, 75%);
+  padding: 0.6rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.searchbar__icon {
+  font-size: 2rem;
+  position: absolute;
+  right: 1%;
+  top: 50%;
+  transform: translate(0, -50%);
+  z-index: 999;
+}
+
+.select__input {
+  background-color: hsl(0, 0%, 75%);
+  border-radius: 0.5rem;
+  padding: 0.2rem;
+  border: none;
+}
+
+.bookmarks__div {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.bookmarks__btn {
+  background-color: transparent;
+  border: none;
+}
+
+.bookmarks__icon {
+  height: 2.8rem;
+  width: 2.8rem;
+  display: inline-block;
+  color: hsl(0, 0%, 75%);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.videos__section {
+  max-width: 110rem;
+  margin: 0 auto;
+}
+
+.videos__list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: center;
+  row-gap: 2rem;
+}
+
+.movie__card {
+  height: 40rem;
+  width: 26rem;
+  position: relative;
+  justify-self: center;
+}
+
+.movie__card:hover .movie__img {
+  filter: brightness(0.5);
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.movie__img {
+  width: 100%;
+  height: 100%;
+}
+
+.movie__card:hover .movie__img {
+  filter: brightness(0.5);
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.movie__card:hover .see__more__btn {
+  display: flex;
+}
+
+.movie__card:hover .bookmark__div {
+  display: flex;
+}
+
+.pagination__div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 5rem;
+}
+
+.pagination__btn {
+  border: 0;
+  font-size: 2.4rem;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  cursor: pointer;
 }
