@@ -63,6 +63,7 @@ function App() {
               movies={movies}
               setCurrentPage={setCurrentPage}
               postsPerPage={postsPerPage}
+              currentPage={currentPage}
             />
           }
         />
