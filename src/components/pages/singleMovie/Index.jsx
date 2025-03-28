@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import SingleMovieHeader from "./header/Index";
-import { CiBookmark } from "react-icons/ci";
-import ReactPlayer from "react-player/youtube";
+import SingleMovieInfoContainer from "./InfoContainer/Index";
+import SingleMovieVideoContainer from "./VideoContainer/Index";
 
 
 function SingleMovie(props){
@@ -10,7 +10,7 @@ function SingleMovie(props){
     const {supabase} = props
 
     let params = useParams()
-    const [movie,setMovie]=useState({})
+    const [movie,setMovie]=useState(null)
 
     async function fetchMovie() {
         try {
@@ -29,7 +29,11 @@ function SingleMovie(props){
       }
 
 useEffect(()=>{
-    fetchMovie()
+    if(!movie){
+
+        fetchMovie()
+        console.log('etest')
+    }
 },[])
 
     console.log(movie)
@@ -38,35 +42,10 @@ useEffect(()=>{
         {movie&&
         <main className="single__movie__container">
             <SingleMovieHeader movie={movie} />
-            <div className="single__movie__video__div">
-                <article className="single__movie__card movie__card">
-                      <img src={movie.image} alt="" className="movie__img" />;
-                      <div className="bookmark__div">
-                        <CiBookmark className="bookmark__icon" />
-                      </div>
-            </article>
-            <ReactPlayer className="react__player"
-        url={movie.trailer}
-        controls={true}/>
-            </div>
-            <div className="single__movie__info__container">
-
-            <div className="single__movie__info__div">
-                <h2 className="single__movie__info__heading">{movie.genre.join(', ')}</h2>
-                <p className="single__movie__info__p">{movie.description}</p>
-            </div>
-            <div className="single__movie__info__div">
-            <h2 className="single__movie__info__heading">Director</h2>
-            <p className="single__movie__info__p">{movie.director.join(', ')}</p>
-            </div>
-            <div className="single__movie__info__div">
-            <h2 className="single__movie__info__heading">Writers</h2>
-            <p className="single__movie__info__p">{movie.writers.join(', ')}</p>
-            </div>
-            </div>
+            <SingleMovieVideoContainer movie={movie}/>
+            <SingleMovieInfoContainer movie={movie}/>
         </main>
         }
     </section>
 }
-
 export default SingleMovie;
