@@ -1,15 +1,16 @@
 import { CiBookmark, CiSearch } from "react-icons/ci";
 import { IoMdStar } from "react-icons/io";
+import { useNavigate } from "react-router";
 function MovieCard(props) {
-  const { image, title,year,rating,genre } = props;
-
+  const { image, title,year,rating,genre,imdbid  } = props;
+const navigate = useNavigate()
   return (
     <article className="movie__card">
       <img src={image} alt="" className="movie__img" />;
       <div className="bookmark__div">
         <CiBookmark className="bookmark__icon" />
       </div>
-      <button className="see__more__btn">
+      <button className="see__more__btn" onClick={()=>navigate(`movie/${imdbid}`)}>
         See more
         <CiSearch className="search__icon" />
       </button>

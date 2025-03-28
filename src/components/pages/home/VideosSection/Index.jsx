@@ -2,8 +2,7 @@ import Pagination from "./Pagination/Index";
 import MovieCard from "./VideoCard/Index";
 
 function VideosSection(props) {
-  const { movies, setCurrentPage, postsPerPage,currentPage } = props;
-  console.log(currentPage)
+  const { movies, setCurrentPage,currentPage } = props;
 
   return (
     <section className="videos__section">
@@ -16,7 +15,6 @@ function VideosSection(props) {
       </ul>
       <Pagination
         movies={movies}
-        postsPerPage={postsPerPage}
         setCurrentPage={setCurrentPage}
         currentPage={currentPage}
       />

@@ -3,18 +3,19 @@ import { createClient } from "@supabase/supabase-js";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router";
 import Home from "./components/pages/home/Home";
+import SingleMovie from "./components/pages/singleMovie/Index";
 
 function App() {
   const supabaseKey = import.meta.env.VITE_SUPABASE_KEY;
   const supabaseUrl = "https://igugbxgrjkjwxmvpesde.supabase.co";
   const supabase = createClient(supabaseUrl, supabaseKey);
-  const postsPerPage = 11;
+  const moviesPerPage = 11;
   const [currentPage, setCurrentPage] = useState(1);
   const [movies, setMovies] = useState([]);
   const [trendingMovies, setTrendingMovies] = useState([]);
 
-  const lastMovieIndex = currentPage * postsPerPage;
-  const firstMovieIndex = lastMovieIndex - postsPerPage;
+  const lastMovieIndex = currentPage * moviesPerPage;
+  const firstMovieIndex = lastMovieIndex - moviesPerPage;
 
   async function fetchMovies() {
     try {
@@ -62,11 +63,11 @@ function App() {
               trendingMovies={trendingMovies}
               movies={movies}
               setCurrentPage={setCurrentPage}
-              postsPerPage={postsPerPage}
               currentPage={currentPage}
             />
           }
         />
+        <Route path='movie/:id' element={<SingleMovie supabase={supabase}/>}/>
       </Routes>
     </BrowserRouter>
   );

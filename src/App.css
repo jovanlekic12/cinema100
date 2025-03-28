@@ -243,6 +243,11 @@ body {
   margin: 0 auto;
 }
 
+.single__movie__section {
+  max-width: 100rem;
+  margin: 0 auto;
+}
+
 .videos__list {
   list-style: none;
   display: grid;
@@ -341,4 +346,79 @@ body {
 .movie__card__rating__div {
   display: flex;
   align-items: center;
+}
+
+.single__movie__title {
+  color: #fff;
+  font-size: 2rem;
+}
+
+.single__movie__year {
+  font-size: 1.6rem;
+    color: #fff;
+    opacity: 75%;
+}
+
+.single__movie__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.single__movie__right__div {
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+}
+
+.single__movie__rating__heading {
+  font-size: 2rem;
+    color: #fff;
+    opacity: 75%;
+}
+
+.single__movie__right__span,.single__movie__left__span {
+  font-size: 1.6rem;
+    color: #fff;
+}
+
+.single__movie__right__span {
+  opacity: 75%;
+}
+.single__movie__video__div {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
+.single__movie__card {
+  height: 40rem;
+}
+
+.react__player {
+  height: 40rem !important;
+  width: 100% !important;
+}
+
+.single__movie__info__container {
+  max-width: 70%;
+}
+
+.single__movie__info__heading {
+  font-size: 1.8rem;
+    color: #fff;
+    margin-bottom: .5rem;
+    font-weight: 300;
+}
+
+.single__movie__info__p {
+  margin-bottom: 1rem;
+    border-bottom: 1px solid #fff;
+    width: 100%;
+    padding-bottom: 1rem;
+    opacity: 75%;
+    color: #fff;
+    font-size: 1.6rem;
+
 }
