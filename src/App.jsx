@@ -6,9 +6,14 @@ import Home from "./components/pages/home/Home";
 import SingleMovie from "./components/pages/singleMovie/Index";
 
 function App() {
+  //pomjerit u poseban folder/fajl supabase
   const supabaseKey = import.meta.env.VITE_SUPABASE_KEY;
   const supabaseUrl = "https://igugbxgrjkjwxmvpesde.supabase.co";
   const supabase = createClient(supabaseUrl, supabaseKey);
+
+  //napravit folder util,u njega fajl constants.js
+  //sve konstante pomjerit tu
+
   const moviesPerPage = 11;
   const [currentPage, setCurrentPage] = useState(1);
   const [movies, setMovies] = useState([]);
@@ -16,6 +21,10 @@ function App() {
 
   const lastMovieIndex = currentPage * moviesPerPage;
   const firstMovieIndex = lastMovieIndex - moviesPerPage;
+
+  //napravit folder api i u njega fajl movies.js
+  //sve sto je vezano za dohvat filmova prebacit u posebne funkcije unutar toga fajla (getMovies, getSingleMovie...)
+  //te funkcije treba da vracu data
 
   async function fetchMovies() {
     try {
@@ -67,7 +76,7 @@ function App() {
             />
           }
         />
-        <Route path='movie/:id' element={<SingleMovie supabase={supabase}/>}/>
+        <Route path="movie/:id" element={<SingleMovie supabase={supabase} />} />
       </Routes>
     </BrowserRouter>
   );
