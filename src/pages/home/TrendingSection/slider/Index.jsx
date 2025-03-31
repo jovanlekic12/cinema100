@@ -1,4 +1,4 @@
-import TrendingMovieCard from "./trendingMovieCard/Index";
+import MovieCard from "../../../../components/MovieCard";
 
 function TrendingSlider(props) {
   const { moveIndex, trendingMovies } = props;
@@ -11,7 +11,7 @@ function TrendingSlider(props) {
       >
         {trendingMovies &&
           trendingMovies.map((movie) => {
-            return <TrendingMovieCard {...movie}></TrendingMovieCard>;
+            return <MovieCard {...movie}></MovieCard>;
           })}
       </div>
     </div>

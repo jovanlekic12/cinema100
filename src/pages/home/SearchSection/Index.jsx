@@ -1,6 +1,7 @@
 import { CiSearch } from "react-icons/ci";
 import { PiBookmarkSimpleFill } from "react-icons/pi";
 import { IoHome } from "react-icons/io5";
+import Button from "../../../components/Button";
 function SearchSection(props) {
   return (
     <section className="search__section">
@@ -11,12 +12,12 @@ function SearchSection(props) {
       <div className="bookmarks__div">
         <select className="select__input">All</select>
         <div className="boomarks__btns__div">
-          <button className="bookmarks__btn">
+          <Button className="bookmarks__btn">
             <PiBookmarkSimpleFill className="bookmarks__icon" />
-          </button>
-          <button className="bookmarks__btn">
+          </Button>
+          <Button className="bookmarks__btn">
             <IoHome className="bookmarks__icon" />
-          </button>
+          </Button>
         </div>
       </div>
     </section>

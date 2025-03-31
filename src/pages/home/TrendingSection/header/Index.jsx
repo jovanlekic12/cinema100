@@ -1,9 +1,11 @@
+import H4 from "../../../../components/h4";
+
 function TrendingHeader({ moveIndex }) {
   const array = ["", "", "", ""];
 
   return (
     <div className="trending__header">
-      <h4 className="trending__heading">Currently trending</h4>
+      <H4>Currently trending</H4>
       <div className="trending__selection__div">
         {array.map((item, index) => {
           return (

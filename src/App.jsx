@@ -1,23 +1,13 @@
 import { useEffect, useState, useRef } from "react";
-import { createClient } from "@supabase/supabase-js";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router";
-import Home from "./components/pages/home/Home";
-import SingleMovie from "./components/pages/singleMovie/Index";
-
+import Home from "./pages/home/Home";
+import SingleMovie from "./pages/singleMovie/Index";
+import { supabase } from "./supabase/supabase";
+import { moviesPerPage } from "./utils/constants";
 function App() {
-  //pomjerit u poseban folder/fajl supabase
-  const supabaseKey = import.meta.env.VITE_SUPABASE_KEY;
-  const supabaseUrl = "https://igugbxgrjkjwxmvpesde.supabase.co";
-  const supabase = createClient(supabaseUrl, supabaseKey);
-
-  //napravit folder util,u njega fajl constants.js
-  //sve konstante pomjerit tu
-
-  const moviesPerPage = 11;
   const [currentPage, setCurrentPage] = useState(1);
   const [movies, setMovies] = useState([]);
-  const [trendingMovies, setTrendingMovies] = useState([]);
 
   const lastMovieIndex = currentPage * moviesPerPage;
   const firstMovieIndex = lastMovieIndex - moviesPerPage;
@@ -42,18 +32,8 @@ function App() {
     }
   }
 
-  async function fetchTrendingMovies() {
-    try {
-      const { data, error } = await supabase.from("trendingMovies").select("*");
-      setTrendingMovies(data);
-    } catch (err) {
-      console.error("Unexpected error:", err);
-    }
-  }
-
   useEffect(() => {
     fetchMovies();
-    fetchTrendingMovies();
   }, []);
 
   useEffect(() => {
@@ -69,7 +49,6 @@ function App() {
           index
           element={
             <Home
-              trendingMovies={trendingMovies}
               movies={movies}
               setCurrentPage={setCurrentPage}
               currentPage={currentPage}

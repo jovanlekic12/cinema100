@@ -1,24 +1,22 @@
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
+import Button from "../../../../components/Button";
+import { FillArray } from "../../../../utils/helpers";
 
 function Pagination({ setCurrentPage, currentPage }) {
   let pages = [];
-
-  //prebaciti ovu funkciju u folder utils/helpers.js
-  for (let i = 1; i <= 9; i++) {
-    pages.push(i);
-  }
+  FillArray(pages);
 
   return (
     <div className="pagination__div">
-      <button
+      <Button
         className="pagination__btn pagination__arrow"
         onClick={() => setCurrentPage((prev) => (prev === 1 ? 1 : prev - 1))}
       >
         <FaArrowLeftLong />
-      </button>
+      </Button>
       {pages.map((page, index) => {
         return (
-          <button
+          <Button
             className={
               page === currentPage
                 ? "pagination__btn active__btn"
@@ -28,15 +26,15 @@ function Pagination({ setCurrentPage, currentPage }) {
             onClick={() => setCurrentPage(page)}
           >
             {page}
-          </button>
+          </Button>
         );
       })}
-      <button
+      <Button
         className="pagination__btn pagination__arrow"
         onClick={() => setCurrentPage((prev) => (prev === 9 ? 9 : prev + 1))}
       >
         <FaArrowRightLong />
-      </button>
+      </Button>
     </div>
   );
 }

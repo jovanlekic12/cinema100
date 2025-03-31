@@ -31,7 +31,7 @@ body {
   justify-content: space-between;
 }
 
-.trending__heading {
+.heading__fourth {
   color: #fff;
   font-size: 2.2rem;
   font-weight: 400;
@@ -185,6 +185,7 @@ body {
   align-items: center;
   justify-content: space-between;
   margin-top: 10rem;
+  margin-bottom: 5rem;
   background-color: #161d2f;
   padding: 1rem;
   border-radius: 1rem;
@@ -254,6 +255,7 @@ body {
   grid-template-columns: repeat(4, 1fr);
   justify-content: center;
   row-gap: 2rem;
+  margin-top: 2rem;
 }
 
 .movie__card {
@@ -304,7 +306,6 @@ body {
   background-color: hsl(0, 0%, 75%);
 }
 
-
 .pagination__arrow {
   display: flex;
   align-items: center;
@@ -317,18 +318,17 @@ body {
   background-color: #fc4747;
 }
 
-.movie__card__title{
+.movie__card__title {
   font-size: 1.4rem;
   color: #fff;
   position: relative;
   margin-top: 1rem;
-
 }
 
 .movie__card__p {
   font-size: 1.4rem;
-    color: #fff;
-    opacity: 75%;
+  color: #fff;
+  opacity: 75%;
 }
 
 .movie__card__star {
@@ -355,8 +355,8 @@ body {
 
 .single__movie__year {
   font-size: 1.6rem;
-    color: #fff;
-    opacity: 75%;
+  color: #fff;
+  opacity: 75%;
 }
 
 .single__movie__header {
@@ -373,13 +373,14 @@ body {
 
 .single__movie__rating__heading {
   font-size: 2rem;
-    color: #fff;
-    opacity: 75%;
+  color: #fff;
+  opacity: 75%;
 }
 
-.single__movie__right__span,.single__movie__left__span {
+.single__movie__right__span,
+.single__movie__left__span {
   font-size: 1.6rem;
-    color: #fff;
+  color: #fff;
 }
 
 .single__movie__right__span {
@@ -407,18 +408,17 @@ body {
 
 .single__movie__info__heading {
   font-size: 1.8rem;
-    color: #fff;
-    margin-bottom: .5rem;
-    font-weight: 300;
+  color: #fff;
+  margin-bottom: 0.5rem;
+  font-weight: 300;
 }
 
 .single__movie__info__p {
   margin-bottom: 1rem;
-    border-bottom: 1px solid #fff;
-    width: 100%;
-    padding-bottom: 1rem;
-    opacity: 75%;
-    color: #fff;
-    font-size: 1.6rem;
-
+  border-bottom: 1px solid #fff;
+  width: 100%;
+  padding-bottom: 1rem;
+  opacity: 75%;
+  color: #fff;
+  font-size: 1.6rem;
 }
