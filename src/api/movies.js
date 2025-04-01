@@ -1,11 +1,11 @@
 import { supabase } from "../supabase/supabase";
 
-export async function fetchMovies() {
+export async function fetchMovies(firstIndex, lastIndex) {
   try {
     let { data: fetchedMovies, error } = await supabase
       .from("movies")
       .select("*")
-      .range(firstMovieIndex, lastMovieIndex);
+      .range(firstIndex, lastIndex);
     if (error) {
       console.error("Error fetching movies:", error);
       return;
@@ -22,5 +22,14 @@ export async function fetchTrendingMovies() {
     return data;
   } catch (err) {
     console.error("Unexpected error:", err);
+  }
+}
+
+export async function fetchCategories() {
+  try {
+    const { data, err } = await supabase.from("categories").select("*");
+    return data;
+  } catch (err) {
+    console.error(err);
   }
 }

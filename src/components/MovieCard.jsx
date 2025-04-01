@@ -3,11 +3,19 @@ import { useNavigate } from "react-router";
 import Button from "./Button";
 
 function MovieCard(props) {
-  const { image, imdbid } = props;
+  const { image, imdbid, type } = props;
   let navigate = useNavigate();
+
   return (
-    <article className="trending__movie__card">
-      <img src={image} alt="" className="trending__movie__img" />;
+    <article
+      className={type === "highlight" ? "trending__movie__card" : "movie__card"}
+    >
+      <img
+        src={image}
+        alt=""
+        className={type === "highlight" ? "trending__movie__img" : "movie__img"}
+      />
+      ;
       <div className="bookmark__div">
         <CiBookmark className="bookmark__icon" />
       </div>

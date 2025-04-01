@@ -11,7 +11,7 @@ function TrendingSlider(props) {
       >
         {trendingMovies &&
           trendingMovies.map((movie) => {
-            return <MovieCard {...movie}></MovieCard>;
+            return <MovieCard {...movie} type="highlight"></MovieCard>;
           })}
       </div>
     </div>

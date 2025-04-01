@@ -5,6 +5,7 @@ import Home from "./pages/home/Home";
 import SingleMovie from "./pages/singleMovie/Index";
 import { supabase } from "./supabase/supabase";
 import { moviesPerPage } from "./utils/constants";
+import { fetchMovies } from "./api/movies";
 function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [movies, setMovies] = useState([]);
@@ -12,32 +13,17 @@ function App() {
   const lastMovieIndex = currentPage * moviesPerPage;
   const firstMovieIndex = lastMovieIndex - moviesPerPage;
 
-  //napravit folder api i u njega fajl movies.js
-  //sve sto je vezano za dohvat filmova prebacit u posebne funkcije unutar toga fajla (getMovies, getSingleMovie...)
-  //te funkcije treba da vracu data
-
-  async function fetchMovies() {
-    try {
-      let { data: fetchedMovies, error } = await supabase
-        .from("movies")
-        .select("*")
-        .range(firstMovieIndex, lastMovieIndex);
-      if (error) {
-        console.error("Error fetching movies:", error);
-        return;
-      }
-      setMovies(fetchedMovies);
-    } catch (error) {
-      console.error("Unexpected error:", error);
-    }
-  }
+  const getMovies = async () => {
+    const data = await fetchMovies(firstMovieIndex, lastMovieIndex);
+    setMovies(data);
+  };
 
   useEffect(() => {
-    fetchMovies();
+    getMovies();
   }, []);
 
   useEffect(() => {
-    fetchMovies();
+    getMovies();
   }, [currentPage]);
 
   console.log(movies);
