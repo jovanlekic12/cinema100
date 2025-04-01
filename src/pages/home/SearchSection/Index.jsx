@@ -25,7 +25,7 @@ function SearchSection(props) {
         <CiSearch className="searchbar__icon"></CiSearch>
       </div>
       <div className="bookmarks__div">
-        <select className="select__input">
+        <select className="select__input" value="All">
           {categories &&
             categories.map((category) => {
               return <option value={category.name}>{category.name}</option>;

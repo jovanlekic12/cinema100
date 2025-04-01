@@ -6,6 +6,8 @@ import SingleMovie from "./pages/singleMovie/Index";
 import { supabase } from "./supabase/supabase";
 import { moviesPerPage } from "./utils/constants";
 import { fetchMovies } from "./api/movies";
+import LogIn from "./pages/logIn/Index";
+import SignUp from "./pages/signUp/Index";
 function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [movies, setMovies] = useState([]);
@@ -31,8 +33,10 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route index element={<LogIn />} />
+        <Route path="/signUp" element={<SignUp />} />
         <Route
-          index
+          path="/home"
           element={
             <Home
               movies={movies}
