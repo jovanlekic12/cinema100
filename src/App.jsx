@@ -3,49 +3,29 @@ import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router";
 import Home from "./pages/home/Home";
 import SingleMovie from "./pages/singleMovie/Index";
-import { supabase } from "./supabase/supabase";
-import { moviesPerPage } from "./utils/constants";
-import { fetchMovies } from "./api/movies";
 import LogIn from "./pages/logIn/Index";
 import SignUp from "./pages/signUp/Index";
 function App() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [movies, setMovies] = useState([]);
+  const [token, setToken] = useState(false);
 
-  const lastMovieIndex = currentPage * moviesPerPage;
-  const firstMovieIndex = lastMovieIndex - moviesPerPage;
-
-  const getMovies = async () => {
-    const data = await fetchMovies(firstMovieIndex, lastMovieIndex);
-    setMovies(data);
-  };
+  if (token) {
+    sessionStorage.setItem("token", JSON.stringify(token));
+  }
 
   useEffect(() => {
-    getMovies();
+    if (sessionStorage.getItem("token")) {
+      let data = JSON.parse(sessionStorage.getItem("token"));
+      setToken(data);
+    }
   }, []);
-
-  useEffect(() => {
-    getMovies();
-  }, [currentPage]);
-
-  console.log(movies);
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route index element={<LogIn />} />
+        <Route index element={<LogIn setToken={setToken} />} />
         <Route path="/signUp" element={<SignUp />} />
-        <Route
-          path="/home"
-          element={
-            <Home
-              movies={movies}
-              setCurrentPage={setCurrentPage}
-              currentPage={currentPage}
-            />
-          }
-        />
-        <Route path="movie/:id" element={<SingleMovie supabase={supabase} />} />
+        {token && <Route path="/home" element={<Home />} />}
+        <Route path="movie/:id" element={<SingleMovie />} />
       </Routes>
     </BrowserRouter>
   );

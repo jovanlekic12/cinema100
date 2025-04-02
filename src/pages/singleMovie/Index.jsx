@@ -3,10 +3,8 @@ import { useParams } from "react-router";
 import SingleMovieHeader from "./header/Index";
 import SingleMovieInfoContainer from "./InfoContainer/Index";
 import SingleMovieVideoContainer from "./VideoContainer/Index";
-
+import { supabase } from "../../supabase/supabase";
 function SingleMovie(props) {
-  const { supabase } = props;
-
   let params = useParams();
   const [movie, setMovie] = useState(null);
 
@@ -29,11 +27,8 @@ function SingleMovie(props) {
   useEffect(() => {
     if (!movie) {
       fetchMovie();
-      console.log("etest");
     }
   }, []);
-
-  console.log(movie);
 
   return (
     <section className="single__movie__section">

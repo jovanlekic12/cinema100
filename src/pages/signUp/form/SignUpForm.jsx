@@ -2,8 +2,11 @@ import { useState } from "react";
 import Button from "../../../components/Button";
 import InputsDiv from "./inputs div/Index";
 import { supabase } from "../../../supabase/supabase";
+import { useNavigate } from "react-router";
 
 function SignUpForm(props) {
+  let navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name: "",
     lastName: "",
@@ -18,8 +21,8 @@ function SignUpForm(props) {
         [event.target.name]: event.target.value,
       };
     });
-    console.log(formData);
   }
+
   async function handleSubmit(event) {
     event.preventDefault();
     try {
@@ -33,6 +36,7 @@ function SignUpForm(props) {
           },
         },
       });
+      alert("Check your email for verification link");
     } catch (err) {
       console.error(err);
     }
@@ -45,7 +49,9 @@ function SignUpForm(props) {
       <Button className="submit__btn">Sign Up</Button>
       <div className="redirect__div">
         <p className="redirect__p">Already have an account?</p>
-        <Button className="redirect__btn">Log In</Button>
+        <Button className="redirect__btn" onClick={() => navigate("/")}>
+          Log In
+        </Button>
       </div>
     </form>
   );

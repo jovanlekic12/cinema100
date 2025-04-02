@@ -16,8 +16,6 @@ function SearchSection(props) {
     getCategories();
   }, []);
 
-  console.log(categories);
-
   return (
     <section className="search__section">
       <div className="search__div">
