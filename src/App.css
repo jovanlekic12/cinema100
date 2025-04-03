@@ -522,3 +522,63 @@ body {
   transition: all 0.3s;
   font-size: inherit;
 }
+
+.header {
+  background-color: #161d2f;
+}
+
+.header__logo__img {
+  width: 4.3rem;
+  height: 4.3rem;
+}
+
+.header__logo__text {
+  font-size: 1.8rem;
+  color: #fff;
+}
+
+.header {
+  padding: 1.5rem 8rem;
+  margin-bottom: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar__msg {
+  font-size: 1.6rem;
+  letter-spacing: 0.6px;
+  color: #fff;
+}
+
+.logout__div {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.logout__btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.logout__icon {
+  height: 2.4rem;
+  width: 2.4rem;
+  color: hsl(0, 0%, 75%);
+}
+
+.logo__link,
+.logo__link:visited,
+.logo__link:active {
+  text-decoration: none;
+}

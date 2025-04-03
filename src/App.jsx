@@ -5,6 +5,7 @@ import Home from "./pages/home/Home";
 import SingleMovie from "./pages/singleMovie/Index";
 import LogIn from "./pages/logIn/Index";
 import SignUp from "./pages/signUp/Index";
+import Layout from "./components/Layout";
 function App() {
   const [token, setToken] = useState(false);
 
@@ -23,9 +24,11 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route index element={<LogIn setToken={setToken} />} />
-        <Route path="/signUp" element={<SignUp />} />
-        {token && <Route path="/home" element={<Home />} />}
-        <Route path="movie/:id" element={<SingleMovie />} />
+        <Route path="signUp" element={<SignUp />} />
+        <Route path="/" element={<Layout token={token} />}>
+          {token && <Route path="home" element={<Home />} />}
+          <Route path="movie/:id" element={<SingleMovie />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

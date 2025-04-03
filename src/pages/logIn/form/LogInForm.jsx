@@ -12,6 +12,16 @@ function LogInForm({ setToken }) {
     password: "",
   });
 
+  async function logInAsGuest() {
+    const { data, error } = await supabase.auth.signInAnonymously();
+    setToken(data);
+    navigate("/home");
+    if (error) {
+      console.error("Guest login failed:", error.message);
+      return;
+    }
+  }
+
   const logIn = async () => {
     const data = await logInUser(formData.email, formData.password);
     setToken(data);
@@ -32,17 +42,25 @@ function LogInForm({ setToken }) {
     navigate("/home");
   }
   return (
-    <form className="form" onSubmit={handleSubmit}>
-      <h2 className="form__heading">Log In</h2>
-      <InputsDiv handleChange={handleChange} />
-      <Button className="submit__btn">Log In</Button>
+    <div className="form">
+      <form onSubmit={handleSubmit}>
+        <h2 className="form__heading">Log In</h2>
+        <InputsDiv handleChange={handleChange} />
+        <Button className="submit__btn">Log In</Button>
+        <div className="redirect__div">
+          <p className="redirect__p">Don't have an account?</p>
+          <Button className="redirect__btn" onClick={() => navigate("/signUp")}>
+            Sign up
+          </Button>
+        </div>
+      </form>
       <div className="redirect__div">
-        <p className="redirect__p">Don't have an account?</p>
-        <Button className="redirect__btn" onClick={() => navigate("/signUp")}>
-          Sign up
+        <p className="redirect__p">Or,</p>
+        <Button className="redirect__btn" onClick={() => logInAsGuest()}>
+          Log In as a guest
         </Button>
       </div>
-    </form>
+    </div>
   );
 }
 

@@ -21,7 +21,7 @@ function MovieCard(props) {
       </div>
       <Button
         className="see__more__btn"
-        onClick={() => navigate(`movie/${imdbid}`)}
+        onClick={() => navigate(`/movie/${imdbid}`)}
       >
         See more
         <CiSearch className="search__icon" />
