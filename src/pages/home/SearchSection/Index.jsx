@@ -3,27 +3,34 @@ import { PiBookmarkSimpleFill } from "react-icons/pi";
 import { IoHome } from "react-icons/io5";
 import Button from "../../../components/Button";
 import { fetchCategories } from "../../../api/movies";
-import { useEffect, useState } from "react";
-function SearchSection(props) {
-  const [categories, setCategories] = useState([]);
-
-  const getCategories = async () => {
-    const data = await fetchCategories();
-    setCategories(data);
+import { useFetchData } from "../../../api/useFetchData";
+function SearchSection({ setSearchTerm, setCategory, category }) {
+  const { isLoading, data: categories } = useFetchData(fetchCategories);
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
   };
 
-  useEffect(() => {
-    getCategories();
-  }, []);
+  const handleCategoryChange = (event) => {
+    setCategory(event.target.value);
+  };
 
   return (
     <section className="search__section">
       <div className="search__div">
-        <input type="text" className="search__input" placeholder="Search..." />
+        <input
+          onChange={handleSearchChange}
+          type="text"
+          className="search__input"
+          placeholder="Search..."
+        />
         <CiSearch className="searchbar__icon"></CiSearch>
       </div>
       <div className="bookmarks__div">
-        <select className="select__input" value="All">
+        <select
+          className="select__input"
+          value={category}
+          onChange={handleCategoryChange}
+        >
           {categories &&
             categories.map((category) => {
               return <option value={category.name}>{category.name}</option>;

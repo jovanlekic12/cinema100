@@ -27,7 +27,7 @@ function App() {
         <Route path="signUp" element={<SignUp />} />
         <Route path="/" element={<Layout token={token} />}>
           {token && <Route path="home" element={<Home />} />}
-          <Route path="movie/:id" element={<SingleMovie />} />
+          {token && <Route path="movie/:id" element={<SingleMovie />} />}
         </Route>
       </Routes>
     </BrowserRouter>

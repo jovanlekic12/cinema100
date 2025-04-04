@@ -1,37 +1,23 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import SingleMovieHeader from "./header/Index";
 import SingleMovieInfoContainer from "./InfoContainer/Index";
 import SingleMovieVideoContainer from "./VideoContainer/Index";
 import { supabase } from "../../supabase/supabase";
+import { fetchMovie } from "../../api/movies";
+import { useFetchData } from "../../api/useFetchData";
+import Loader from "../../components/Loader";
 function SingleMovie(props) {
   let params = useParams();
-  const [movie, setMovie] = useState(null);
+  const fetchPage = useCallback(() => fetchMovie(params.id), [params.id]);
 
-  async function fetchMovie() {
-    try {
-      let { data: fetchedMovie, error } = await supabase
-        .from("movies")
-        .select("*")
-        .eq("imdbid", `${params.id}`);
-      if (error) {
-        console.error("Error fetching movies:", error);
-        return;
-      }
-      setMovie(fetchedMovie[0]);
-    } catch (error) {
-      console.error("Unexpected error:", error);
-    }
-  }
+  const { isLoading, data: movie } = useFetchData(fetchPage);
 
-  useEffect(() => {
-    if (!movie) {
-      fetchMovie();
-    }
-  }, []);
+  console.log(movie);
 
   return (
     <section className="single__movie__section">
+      {isLoading && <Loader />}
       {movie && (
         <main className="single__movie__container">
           <SingleMovieHeader movie={movie} />

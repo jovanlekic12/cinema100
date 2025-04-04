@@ -2,8 +2,6 @@ import { Link, useNavigate } from "react-router";
 import { RiShutDownLine } from "react-icons/ri";
 import Button from "./Button";
 function Navbar({ token }) {
-  console.log(token);
-
   let navigate = useNavigate();
 
   function handleLogout() {

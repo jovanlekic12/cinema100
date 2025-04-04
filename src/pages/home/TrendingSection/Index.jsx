@@ -2,11 +2,14 @@ import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
 import { useEffect, useState } from "react";
 import TrendingSlider from "./slider/Index";
 import TrendingHeader from "./header/Index";
-import { fetchTrendingMovies } from "../../../api/movies";
 import Button from "../../../components/Button";
+import { useFetchData } from "../../../api/useFetchData";
+import { fetchTrendingMovies } from "../../../api/movies";
+import Loader from "../../../components/Loader";
+
 function TrendingSection(props) {
   const [moveIndex, setMoveIndex] = useState(0);
-  const [trendingMovies, setTrendingMovies] = useState([]);
+  const { isLoading, data: trendingMovies } = useFetchData(fetchTrendingMovies);
 
   function handleSlide(side) {
     if (side === "left") {
@@ -16,21 +19,17 @@ function TrendingSection(props) {
     }
   }
 
-  useEffect(() => {
-    const fetchedMovies = async () => {
-      const data = await fetchTrendingMovies();
-      setTrendingMovies(data);
-    };
-    fetchedMovies();
-  }, []);
-
   return (
     <section className="slider__section">
       <TrendingHeader moveIndex={moveIndex}></TrendingHeader>
-      <TrendingSlider
-        moveIndex={moveIndex}
-        trendingMovies={trendingMovies}
-      ></TrendingSlider>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <TrendingSlider
+          moveIndex={moveIndex}
+          trendingMovies={trendingMovies}
+        ></TrendingSlider>
+      )}
       <Button className="arrow arrow__left" onClick={() => handleSlide("left")}>
         <FaArrowLeftLong />
       </Button>

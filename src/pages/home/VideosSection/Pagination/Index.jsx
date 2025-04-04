@@ -1,10 +1,10 @@
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
 import Button from "../../../../components/Button";
 import { FillArray } from "../../../../utils/helpers";
-
+import { moviesPerPage } from "../../../../utils/constants";
 function Pagination({ setCurrentPage, currentPage }) {
   let pages = [];
-  FillArray(pages);
+  FillArray(pages, 100, moviesPerPage);
 
   return (
     <div className="pagination__div">
