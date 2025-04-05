@@ -14,7 +14,12 @@ function VideosSection({ searchTerm, category }) {
   const firstMovieIndex = lastMovieIndex - moviesPerPage;
 
   const fetchPage = useCallback(() => {
-    return fetchMovies(firstMovieIndex, lastMovieIndex, searchTerm, category);
+    return fetchMovies({
+      firstMovieIndex,
+      lastMovieIndex,
+      searchTerm,
+      category,
+    });
   }, [firstMovieIndex, lastMovieIndex, searchTerm, category]);
 
   const { isLoading, data: movies } = useFetchData(fetchPage);

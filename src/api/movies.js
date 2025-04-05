@@ -1,6 +1,6 @@
 import { supabase } from "../supabase/supabase";
 
-export async function fetchMovies(firstIndex, lastIndex, search, category) {
+export async function fetchMovies({ firstIndex, lastIndex, search, category }) {
   try {
     let query = supabase
       .from("movies")

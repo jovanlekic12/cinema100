@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export function useFetchData(fetch) {
+export function useFetchData(fetchHandler) {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState(null);
 
@@ -10,7 +10,7 @@ export function useFetchData(fetch) {
     const fetchedData = async () => {
       setIsLoading(true);
       try {
-        const response = await fetch();
+        const response = await fetchHandler();
         if (isMounted) {
           setData(response);
         }
@@ -28,7 +28,7 @@ export function useFetchData(fetch) {
     return () => {
       isMounted = false;
     };
-  }, [fetch]);
+  }, [fetchHandler]);
 
   return { isLoading, data };
 }
