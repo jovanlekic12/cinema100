@@ -1,26 +1,31 @@
 import { supabase } from "../supabase/supabase";
 
-export async function fetchMovies({ firstIndex, lastIndex, search, category }) {
+export async function fetchMovies({
+  firstMovieIndex,
+  lastMovieIndex,
+  searchTerm,
+  category,
+}) {
   try {
     let query = supabase
       .from("movies")
-      .select("*")
-      .range(firstIndex, lastIndex);
+      .select("*", { count: "exact" })
+      .range(firstMovieIndex, lastMovieIndex);
 
-    if (search) {
-      query = query.ilike("title", `%${search}%`);
+    if (searchTerm) {
+      query = query.ilike("title", `%${searchTerm}%`);
     }
 
     if (category && category !== "All") {
       query = query.contains("genre", [category]);
     }
 
-    const { data: fetchedMovies, error } = await query;
+    const { data: fetchedMovies, error, count } = await query;
     if (error) {
       console.error("Supabase error:", error);
       return [];
     }
-    return fetchedMovies;
+    return { movies: fetchedMovies, count };
   } catch (error) {
     console.error("Unexpected error:", error);
   }

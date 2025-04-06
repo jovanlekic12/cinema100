@@ -22,7 +22,9 @@ function VideosSection({ searchTerm, category }) {
     });
   }, [firstMovieIndex, lastMovieIndex, searchTerm, category]);
 
-  const { isLoading, data: movies } = useFetchData(fetchPage);
+  const { isLoading, data } = useFetchData(fetchPage);
+  const movies = data?.movies ?? [];
+  const totalCount = data?.count ?? 0;
 
   return (
     <section className="videos__section">
@@ -51,6 +53,7 @@ function VideosSection({ searchTerm, category }) {
         </ul>
       )}
       <Pagination
+        totalCount={totalCount}
         movies={movies}
         setCurrentPage={setCurrentPage}
         currentPage={currentPage}
