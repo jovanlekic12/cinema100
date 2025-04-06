@@ -1,7 +1,7 @@
 import { CiBookmark, CiSearch } from "react-icons/ci";
 import { useNavigate } from "react-router";
 import Button from "./Button";
-
+import { toggleBookmark } from "../api/toogleBookmark";
 function MovieCard(props) {
   const { image, imdbid, type } = props;
   let navigate = useNavigate();
@@ -16,9 +16,9 @@ function MovieCard(props) {
         className={type === "highlight" ? "trending__movie__img" : "movie__img"}
       />
       ;
-      <div className="bookmark__div">
+      <Button className="bookmark__btn" onClick={() => toggleBookmark(imdbid)}>
         <CiBookmark className="bookmark__icon" />
-      </div>
+      </Button>
       <Button
         className="see__more__btn"
         onClick={() => navigate(`/movie/${imdbid}`)}
