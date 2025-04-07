@@ -23,7 +23,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route index element={<LogIn setToken={setToken} />} />
+        <Route index element={<LogIn setToken={setToken} token={token} />} />
         <Route path="signUp" element={<SignUp />} />
         <Route path="/" element={<Layout token={token} />}>
           {token && <Route path="home" element={<Home />} />}

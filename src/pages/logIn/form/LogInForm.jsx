@@ -4,7 +4,7 @@ import InputsDiv from "./inputs div/Index";
 import { supabase } from "../../../supabase/supabase";
 import { useState } from "react";
 import { logInUser } from "../../../api/login";
-function LogInForm({ setToken }) {
+function LogInForm({ setToken, token }) {
   let navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -23,7 +23,7 @@ function LogInForm({ setToken }) {
   }
 
   const logIn = async () => {
-    const data = await logInUser(formData.email, formData.password);
+    const { data, err } = await logInUser(formData.email, formData.password);
     setToken(data);
   };
 
@@ -39,7 +39,9 @@ function LogInForm({ setToken }) {
   async function handleSubmit(event) {
     event.preventDefault();
     logIn();
-    navigate("/home");
+    if (token) {
+      navigate("/home");
+    }
   }
   return (
     <div className="form">

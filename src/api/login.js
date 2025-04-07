@@ -6,8 +6,8 @@ export async function logInUser(userEmail, userPassword) {
       email: userEmail,
       password: userPassword,
     });
-    return data;
+    return { data, err };
   } catch (err) {
-    console.error(err);
+    console.log("mjau", err);
   }
 }

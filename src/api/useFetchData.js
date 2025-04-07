@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 export function useFetchData(fetchHandler) {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState(null);
-
+  const [error, setError] = useState(null);
   useEffect(() => {
     let isMounted = true;
 
@@ -16,6 +16,7 @@ export function useFetchData(fetchHandler) {
         }
       } catch (err) {
         console.error("Fetching error:", err);
+        setError(err);
       } finally {
         if (isMounted) {
           setIsLoading(false);
@@ -30,5 +31,5 @@ export function useFetchData(fetchHandler) {
     };
   }, [fetchHandler]);
 
-  return { isLoading, data };
+  return { isLoading, data, error };
 }
