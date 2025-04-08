@@ -16,10 +16,12 @@ export async function toggleBookmark(movieId) {
     const { error: insertError } = await supabase
       .from("bookmarks")
       .insert([{ user_id: user.id, imdbid: movieId }]);
+    return true;
   } else {
     const { error: deleteError } = await supabase
       .from("bookmarks")
       .delete()
       .eq("imdbid", existing.imdbid);
+    return false;
   }
 }

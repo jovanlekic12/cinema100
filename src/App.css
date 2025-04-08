@@ -128,7 +128,6 @@ body {
 .bookmark__btn:hover {
   background-color: #ffffff;
   opacity: 0.7;
-
   cursor: pointer;
 }
 
@@ -600,6 +599,14 @@ body {
   border-top-color: #fc4747;
   border-radius: 50%;
   animation: loading 0.75s ease infinite;
+}
+
+.bookmarked__btn {
+  background-color: #ffffff;
+  opacity: 0.7;
+}
+.bookmarked__icon {
+  color: #10141e;
 }
 
 @keyframes loading {
