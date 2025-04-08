@@ -31,5 +31,5 @@ export function useFetchData(fetchHandler) {
     };
   }, [fetchHandler]);
 
-  return { isLoading, data, error };
+  return { isLoading, data, error, setData };
 }

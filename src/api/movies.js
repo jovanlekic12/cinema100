@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { supabase } from "../supabase/supabase";
 
 export async function fetchMovies({
@@ -5,6 +6,8 @@ export async function fetchMovies({
   lastMovieIndex,
   searchTerm,
   category,
+  displayedMovies,
+  bookmarks,
 }) {
   try {
     let query = supabase
@@ -18,6 +21,11 @@ export async function fetchMovies({
 
     if (category && category !== "All") {
       query = query.contains("genre", [category]);
+    }
+
+    if (displayedMovies === "Bookmarks") {
+      const imdbIds = bookmarks.map((bookmark) => bookmark.imdbid);
+      query = query.in("imdbid", imdbIds);
     }
 
     const { data: fetchedMovies, error, count } = await query;
@@ -63,5 +71,21 @@ export async function fetchMovie(id) {
     return data;
   } catch (error) {
     console.error("Unexpected error:", error);
+  }
+}
+
+export async function fetchBookmarks() {
+  try {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    const { data, error: bookmarksError } = await supabase
+      .from("bookmarks")
+      .select("imdbid")
+      .eq("user_id", user.id);
+    return data;
+  } catch (error) {
+    console.error(error);
   }
 }

@@ -1,5 +1,5 @@
-import { useCallback, useState } from "react";
-import { fetchMovies } from "../../../api/movies";
+import { useCallback, useEffect, useState } from "react";
+import { fetchBookmarks, fetchMovies } from "../../../api/movies";
 import { useFetchData } from "../../../api/useFetchData";
 import { moviesPerPage } from "../../../utils/constants";
 import H4 from "../../../components/h4";
@@ -7,9 +7,8 @@ import MovieCard from "../../../components/MovieCard";
 import Pagination from "./Pagination/Index";
 import { IoMdStar } from "react-icons/io";
 import Loader from "../../../components/Loader";
-function VideosSection({ searchTerm, category }) {
+function VideosSection({ searchTerm, category, displayedMovies, bookmarks }) {
   const [currentPage, setCurrentPage] = useState(1);
-
   const lastMovieIndex = currentPage * moviesPerPage;
   const firstMovieIndex = lastMovieIndex - moviesPerPage;
 
@@ -19,10 +18,20 @@ function VideosSection({ searchTerm, category }) {
       lastMovieIndex,
       searchTerm,
       category,
+      displayedMovies,
+      bookmarks,
     });
-  }, [firstMovieIndex, lastMovieIndex, searchTerm, category]);
+  }, [
+    firstMovieIndex,
+    lastMovieIndex,
+    searchTerm,
+    category,
+    displayedMovies,
+    bookmarks,
+  ]);
+  console.log(bookmarks);
 
-  const { isLoading, data } = useFetchData(fetchPage);
+  const { isLoading, data, setData: setMovies } = useFetchData(fetchPage);
   const movies = data?.movies ?? [];
   const totalCount = data?.count ?? 0;
 
@@ -37,7 +46,7 @@ function VideosSection({ searchTerm, category }) {
             movies.map((movie) => {
               return (
                 <div>
-                  <MovieCard {...movie} />
+                  <MovieCard {...movie} setMovies={setMovies} />
                   <h6 className="movie__card__title">{movie.title}</h6>
                   <div className="movie__card__info__div">
                     <p className="movie__card__p">{movie.year}</p>
@@ -52,12 +61,14 @@ function VideosSection({ searchTerm, category }) {
             })}
         </ul>
       )}
-      <Pagination
-        totalCount={totalCount}
-        movies={movies}
-        setCurrentPage={setCurrentPage}
-        currentPage={currentPage}
-      />
+      {movies.length > 0 && (
+        <Pagination
+          totalCount={totalCount}
+          movies={movies}
+          setCurrentPage={setCurrentPage}
+          currentPage={currentPage}
+        />
+      )}
     </section>
   );
 }

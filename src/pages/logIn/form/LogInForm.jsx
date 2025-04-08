@@ -39,8 +39,8 @@ function LogInForm({ setToken, token }) {
   async function handleSubmit(event) {
     event.preventDefault();
     logIn();
+    navigate("/home");
     if (token) {
-      navigate("/home");
     }
   }
   return (

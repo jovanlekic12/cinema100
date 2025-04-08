@@ -3,25 +3,45 @@ import { supabase } from "../supabase/supabase";
 export async function toggleBookmark(movieId) {
   const {
     data: { user },
+    error: userError,
   } = await supabase.auth.getUser();
 
-  const { data: existing, error: fetchError } = await supabase
-    .from("bookmarks")
-    .select("*")
-    .eq("user_id", user.id)
-    .eq("imdbid", movieId)
-    .single();
+  if (userError || !user) {
+    console.error("User not authenticated:", userError);
+    return;
+  }
 
-  if (!existing) {
-    const { error: insertError } = await supabase
+  try {
+    const { data: existing, error: fetchError } = await supabase
       .from("bookmarks")
-      .insert([{ user_id: user.id, imdbid: movieId }]);
-    return true;
-  } else {
-    const { error: deleteError } = await supabase
-      .from("bookmarks")
-      .delete()
-      .eq("imdbid", existing.imdbid);
-    return false;
+      .select("*")
+      .eq("user_id", user.id)
+      .eq("imdbid", movieId)
+      .maybeSingle();
+
+    if (fetchError) {
+      console.error("Error checking bookmark:", fetchError);
+      return;
+    }
+
+    if (!existing) {
+      const { error: insertError } = await supabase
+        .from("bookmarks")
+        .insert([{ user_id: user.id, imdbid: movieId }]);
+      if (insertError) {
+        console.error("Error adding bookmark:", insertError);
+      }
+    } else {
+      const { error: deleteError } = await supabase
+        .from("bookmarks")
+        .delete()
+        .eq("user_id", user.id)
+        .eq("imdbid", movieId);
+      if (deleteError) {
+        console.error("Error removing bookmark:", deleteError);
+      }
+    }
+  } catch (err) {
+    console.error("Unexpected error toggling bookmark:", err);
   }
 }

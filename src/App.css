@@ -87,6 +87,7 @@ body {
   justify-content: center;
   border: 0;
   font-size: 2rem;
+  cursor: pointer;
 }
 
 .arrow__left {
@@ -116,6 +117,7 @@ body {
   display: none;
   position: absolute;
   background-color: #202022cc;
+  border: 0;
   width: 3.5rem;
   height: 3.5rem;
   top: 0.5rem;
@@ -236,6 +238,10 @@ body {
   color: hsl(0, 0%, 75%);
   cursor: pointer;
   transition: all 0.3s ease;
+}
+
+.bookmarks__icon__active {
+  color: #fc4747;
 }
 
 .videos__section {

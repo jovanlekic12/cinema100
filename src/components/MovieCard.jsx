@@ -5,13 +5,9 @@ import { toggleBookmark } from "../api/toogleBookmark";
 import { useState } from "react";
 function MovieCard(props) {
   const { image, imdbid, type } = props;
-  const [isBookmarked, setIsBookmarked] = useState(false);
 
   let navigate = useNavigate();
-  const handleToggleBookmark = async () => {
-    const result = await toggleBookmark(imdbid);
-    setIsBookmarked(result);
-  };
+
   return (
     <article
       className={type === "highlight" ? "trending__movie__card" : "movie__card"}
@@ -23,16 +19,12 @@ function MovieCard(props) {
       />
       ;
       <Button
-        className={
-          isBookmarked ? "bookmarked__btn bookmark__btn" : "bookmark__btn"
-        }
-        onClick={handleToggleBookmark}
+        className={"bookmark__btn"}
+        onClick={() => {
+          toggleBookmark(imdbid);
+        }}
       >
-        <CiBookmark
-          className={
-            isBookmarked ? "bookmarked__icon bookmark__icon" : "bookmark__icon"
-          }
-        />
+        <CiBookmark className={"bookmark__icon"} />
       </Button>
       <Button
         className="see__more__btn"
