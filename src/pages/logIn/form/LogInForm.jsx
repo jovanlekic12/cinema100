@@ -6,7 +6,7 @@ import { useState } from "react";
 import { logInUser } from "../../../api/login";
 function LogInForm({ setToken, token }) {
   let navigate = useNavigate();
-
+  const [error, setError] = useState(null);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -14,18 +14,13 @@ function LogInForm({ setToken, token }) {
 
   async function logInAsGuest() {
     const { data, error } = await supabase.auth.signInAnonymously();
-    setToken(data);
-    navigate("/home");
     if (error) {
-      console.error("Guest login failed:", error.message);
+      setError(error);
       return;
     }
-  }
-
-  const logIn = async () => {
-    const { data, err } = await logInUser(formData.email, formData.password);
     setToken(data);
-  };
+    navigate("/home");
+  }
 
   function handleChange(event) {
     setFormData((prev) => {
@@ -38,10 +33,14 @@ function LogInForm({ setToken, token }) {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    logIn();
-    navigate("/home");
-    if (token) {
+    setError(null);
+    const { data, error } = await logInUser(formData.email, formData.password);
+    if (error) {
+      setError(error.message);
+      return;
     }
+    setToken(data);
+    navigate("/home");
   }
   return (
     <div className="form">
@@ -49,6 +48,7 @@ function LogInForm({ setToken, token }) {
         <h2 className="form__heading">Log In</h2>
         <InputsDiv handleChange={handleChange} />
         <Button className="submit__btn">Log In</Button>
+        {error && <p className="error__msg">{error}</p>}
         <div className="redirect__div">
           <p className="redirect__p">Don't have an account?</p>
           <Button className="redirect__btn" onClick={() => navigate("/signUp")}>

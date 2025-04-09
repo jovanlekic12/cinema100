@@ -528,6 +528,13 @@ body {
   font-size: inherit;
 }
 
+.error__msg {
+  color: #fc4747;
+  font-size: 1.4rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
 .header {
   background-color: #161d2f;
 }
