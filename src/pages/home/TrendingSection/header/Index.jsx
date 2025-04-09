@@ -10,6 +10,7 @@ function TrendingHeader({ moveIndex }) {
         {array.map((item, index) => {
           return (
             <div
+              key={index}
               className={
                 index === moveIndex
                   ? "trending__selection active__selection"

@@ -40,7 +40,11 @@ function SearchSection({
         >
           {categories &&
             categories.map((category) => {
-              return <option value={category.name}>{category.name}</option>;
+              return (
+                <option value={category.name} key={category.name}>
+                  {category.name}
+                </option>
+              );
             })}
         </select>
         <div className="boomarks__btns__div">

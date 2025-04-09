@@ -13,8 +13,6 @@ function SingleMovie(props) {
 
   const { isLoading, data: movie } = useFetchData(fetchPage);
 
-  console.log(movie);
-
   return (
     <section className="single__movie__section">
       {isLoading && <Loader />}

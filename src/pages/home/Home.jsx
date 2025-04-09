@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import SearchSection from "./SearchSection/Index";
 import TrendingSection from "./TrendingSection/Index";
 import VideosSection from "./VideosSection/Index";
@@ -8,16 +8,28 @@ function Home() {
   const [searchTerm, setSearchTerm] = useState("");
   const [category, setCategory] = useState("All");
   const [displayedMovies, setDisplayedMovies] = useState("Home");
+  const [bookmarks, setBookmarks] = useState([]);
 
-  const getBookmarks = useCallback(() => {
-    return fetchBookmarks();
-  }, [displayedMovies]);
+  const getBookmarks = async () => {
+    try {
+      const movies = await fetchBookmarks();
+      setBookmarks(movies);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  const { data: bookmarks } = useFetchData(getBookmarks);
+  useEffect(() => {
+    getBookmarks();
+  }, []);
 
   return (
     <main className="main__container">
-      <TrendingSection />
+      <TrendingSection
+        bookmarks={bookmarks}
+        getBookmarks={getBookmarks}
+        displayedMovies={displayedMovies}
+      />
       <SearchSection
         setSearchTerm={setSearchTerm}
         setCategory={setCategory}
@@ -26,6 +38,7 @@ function Home() {
         setDisplayedMovies={setDisplayedMovies}
       ></SearchSection>
       <VideosSection
+        getBookmarks={getBookmarks}
         bookmarks={bookmarks}
         searchTerm={searchTerm}
         displayedMovies={displayedMovies}

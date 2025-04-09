@@ -7,7 +7,7 @@ import { useFetchData } from "../../../api/useFetchData";
 import { fetchTrendingMovies } from "../../../api/movies";
 import Loader from "../../../components/Loader";
 
-function TrendingSection(props) {
+function TrendingSection({ bookmarks, getBookmarks, displayedMovies }) {
   const [moveIndex, setMoveIndex] = useState(0);
   const { isLoading, data: trendingMovies } = useFetchData(fetchTrendingMovies);
 
@@ -28,6 +28,9 @@ function TrendingSection(props) {
         <TrendingSlider
           moveIndex={moveIndex}
           trendingMovies={trendingMovies}
+          bookmarks={bookmarks}
+          getBookmarks={getBookmarks}
+          displayedMovies={displayedMovies}
         ></TrendingSlider>
       )}
       <Button className="arrow arrow__left" onClick={() => handleSlide("left")}>

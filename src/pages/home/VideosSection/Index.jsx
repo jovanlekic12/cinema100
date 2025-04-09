@@ -7,7 +7,14 @@ import MovieCard from "../../../components/MovieCard";
 import Pagination from "./Pagination/Index";
 import { IoMdStar } from "react-icons/io";
 import Loader from "../../../components/Loader";
-function VideosSection({ searchTerm, category, displayedMovies, bookmarks }) {
+import { toggleBookmark } from "../../../api/toogleBookmark";
+function VideosSection({
+  searchTerm,
+  category,
+  displayedMovies,
+  bookmarks,
+  getBookmarks,
+}) {
   const [currentPage, setCurrentPage] = useState(1);
   const lastMovieIndex = currentPage * moviesPerPage;
   const firstMovieIndex = lastMovieIndex - moviesPerPage;
@@ -29,11 +36,14 @@ function VideosSection({ searchTerm, category, displayedMovies, bookmarks }) {
     displayedMovies,
     bookmarks,
   ]);
-  console.log(bookmarks);
 
   const { isLoading, data, setData: setMovies } = useFetchData(fetchPage);
   const movies = data?.movies ?? [];
   const totalCount = data?.count ?? 0;
+
+  useEffect(() => {
+    getBookmarks();
+  }, [displayedMovies]);
 
   return (
     <section className="videos__section">
@@ -45,8 +55,13 @@ function VideosSection({ searchTerm, category, displayedMovies, bookmarks }) {
           {movies &&
             movies.map((movie) => {
               return (
-                <div>
-                  <MovieCard {...movie} setMovies={setMovies} />
+                <div key={movie.imdbid}>
+                  <MovieCard
+                    {...movie}
+                    bookmarks={bookmarks}
+                    getBookmarks={getBookmarks}
+                    displayedMovies={displayedMovies}
+                  />
                   <h6 className="movie__card__title">{movie.title}</h6>
                   <div className="movie__card__info__div">
                     <p className="movie__card__p">{movie.year}</p>

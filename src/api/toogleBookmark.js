@@ -1,5 +1,4 @@
 import { supabase } from "../supabase/supabase";
-
 export async function toggleBookmark(movieId) {
   const {
     data: { user },

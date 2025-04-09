@@ -2,12 +2,27 @@ import { CiBookmark, CiSearch } from "react-icons/ci";
 import { useNavigate } from "react-router";
 import Button from "./Button";
 import { toggleBookmark } from "../api/toogleBookmark";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { fetchBookmarks } from "../api/movies";
+import { useFetchData } from "../api/useFetchData";
 function MovieCard(props) {
-  const { image, imdbid, type } = props;
-
+  const { image, imdbid, type, bookmarks, getBookmarks, displayedMovies } =
+    props;
+  const [isBookmarked, setIsBookmarked] = useState(false);
   let navigate = useNavigate();
 
+  useEffect(() => {
+    if (bookmarks) {
+      const contains = bookmarks.some((bookmark) => bookmark.imdbid === imdbid);
+      setIsBookmarked(contains);
+    }
+  }, [bookmarks]);
+  function bookmarkHandler() {
+    toggleBookmark(imdbid);
+    setTimeout(() => {
+      getBookmarks();
+    }, 500);
+  }
   return (
     <article
       className={type === "highlight" ? "trending__movie__card" : "movie__card"}
@@ -19,12 +34,16 @@ function MovieCard(props) {
       />
       ;
       <Button
-        className={"bookmark__btn"}
-        onClick={() => {
-          toggleBookmark(imdbid);
-        }}
+        className={
+          isBookmarked ? "bookmarked__btn bookmark__btn" : "bookmark__btn"
+        }
+        onClick={bookmarkHandler}
       >
-        <CiBookmark className={"bookmark__icon"} />
+        <CiBookmark
+          className={
+            isBookmarked ? "bookmarked__icon bookmark__icon" : "bookmark__icon"
+          }
+        />
       </Button>
       <Button
         className="see__more__btn"

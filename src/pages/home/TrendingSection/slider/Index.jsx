@@ -1,7 +1,13 @@
 import MovieCard from "../../../../components/MovieCard";
 
 function TrendingSlider(props) {
-  const { moveIndex, trendingMovies } = props;
+  const {
+    moveIndex,
+    trendingMovies,
+    bookmarks,
+    getBookmarks,
+    displayedMovies,
+  } = props;
 
   return (
     <div className="slider">
@@ -11,7 +17,16 @@ function TrendingSlider(props) {
       >
         {trendingMovies &&
           trendingMovies.map((movie) => {
-            return <MovieCard {...movie} type="highlight"></MovieCard>;
+            return (
+              <MovieCard
+                {...movie}
+                key={movie.imdbid}
+                bookmarks={bookmarks}
+                getBookmarks={getBookmarks}
+                displayedMovies={displayedMovies}
+                type="highlight"
+              ></MovieCard>
+            );
           })}
       </div>
     </div>
