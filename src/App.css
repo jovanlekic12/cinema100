@@ -740,9 +740,10 @@ body {
   .search__section,
   .videos__section,
   .inner__header,
-  .single__movie__section {
+  .form__container {
     max-width: 65rem;
   }
+
   .slider {
     width: 55rem;
     height: 25rem;
@@ -773,7 +774,8 @@ body {
   .search__section,
   .videos__section,
   .inner__header,
-  .single__movie__section {
+  .single__movie__section,
+  .form__container {
     max-width: 55rem;
   }
   .slider {
@@ -793,6 +795,9 @@ body {
   .single__movie__rating__heading {
     font-size: 1.6rem;
   }
+  .form {
+    width: 70%;
+  }
 }
 
 @media (max-width: 581px) {
@@ -800,7 +805,8 @@ body {
   .search__section,
   .videos__section,
   .inner__header,
-  .single__movie__section {
+  .single__movie__section,
+  .form__container {
     max-width: 45rem;
   }
   .slider {
@@ -829,6 +835,14 @@ body {
   }
   .single__movie__info__container {
     max-width: none;
+  }
+  .form__input,
+  .submit__btn {
+    font-size: 1.2rem;
+  }
+
+  .form__heading {
+    font-size: 1.8rem;
   }
 }
 
@@ -867,7 +881,8 @@ body {
   .search__section,
   .videos__section,
   .inner__header,
-  .single__movie__section {
+  .single__movie__section,
+  .form__container {
     max-width: 40rem;
   }
   .slider {
@@ -893,14 +908,23 @@ body {
   .single__movie__info__p {
     font-size: 1.4rem;
   }
+  .form {
+    width: 60%;
+  }
 }
 @media (max-width: 417px) {
   .slider__section,
   .search__section,
   .videos__section,
   .inner__header,
-  .single__movie__section {
+  .single__movie__section,
+  .form__container {
     max-width: 34rem;
+  }
+
+  .redirect__p,
+  .redirect__btn {
+    font-size: 1.4rem;
   }
 
   .slider {
