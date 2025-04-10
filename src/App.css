@@ -71,7 +71,6 @@ body {
 .trending__movies__list {
   display: flex;
   align-items: center;
-  /* gap: 0.5rem; */
   position: absolute;
   z-index: 998;
   transition: all 0.3s;
@@ -549,7 +548,7 @@ body {
   color: #fff;
 }
 
-.header {
+.inner__header {
   padding: 1.5rem 8rem;
   margin-bottom: 3rem;
   display: flex;
@@ -629,4 +628,123 @@ body {
   to {
     transform: rotate(1turn);
   }
+}
+
+@media (max-width: 1200px) {
+  .inner__header {
+    padding: 1.5rem 0;
+    max-width: 100rem;
+    margin: 0 auto;
+    margin-bottom: 3rem;
+  }
+  .slider__section,
+  .search__section,
+  .videos__section {
+    max-width: 100rem;
+  }
+  .trending__movie__card {
+    height: 40rem;
+    width: 22rem;
+  }
+
+  .trending__movies__list {
+    gap: 0.8rem;
+  }
+  .slider {
+    width: 90rem;
+    height: 40rem;
+  }
+}
+
+@media (max-width: 1050px) {
+  .inner__header {
+    padding: 1.5rem 0;
+    max-width: 85rem;
+    margin: 0 auto;
+    margin-bottom: 3rem;
+  }
+  .slider__section,
+  .search__section,
+  .videos__section {
+    max-width: 85rem;
+  }
+  .movie__img {
+    height: 35rem;
+    width: 20rem;
+  }
+
+  .slider {
+    width: 75rem;
+    height: 35rem;
+  }
+  .trending__movie__card {
+    height: 34rem;
+    width: 18rem;
+  }
+
+  .trending__movies__list {
+    gap: 1.1rem;
+  }
+}
+
+@media (max-width: 913px) {
+  .inner__header {
+    padding: 1.5rem 0;
+    max-width: 75rem;
+    margin: 0 auto;
+    margin-bottom: 3rem;
+  }
+  .slider__section,
+  .search__section,
+  .videos__section {
+    max-width: 75rem;
+  }
+  .slider {
+    width: 65rem;
+    height: 29rem;
+  }
+  .videos__list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .trending__movie__card {
+    height: 29rem;
+    width: 15.5rem;
+  }
+}
+
+@media (max-width: 800px) {
+}
+
+@media (max-width: 779px) {
+  .slider__section,
+  .search__section,
+  .videos__section,
+  .inner__header {
+    max-width: 65rem;
+  }
+  .slider {
+    width: 55rem;
+    height: 25rem;
+  }
+  .trending__movie__card {
+    height: 25rem;
+    width: 13rem;
+  }
+
+  .arrow {
+    width: 4rem;
+    height: 4rem;
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 681px) {
+}
+
+@media (max-width: 581px) {
+}
+
+@media (max-width: 481px) {
+}
+@media (max-width: 417px) {
 }

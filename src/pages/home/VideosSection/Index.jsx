@@ -47,7 +47,9 @@ function VideosSection({
 
   return (
     <section className="videos__section">
-      <H4>Top 100</H4>
+      <H4>
+        {displayedMovies === "Home" ? "Top 100" : "Your bookmakered movies"}
+      </H4>
       {isLoading ? (
         <Loader />
       ) : (
