@@ -37,7 +37,7 @@ function VideosSection({
     bookmarks,
   ]);
 
-  const { isLoading, data, setData: setMovies } = useFetchData(fetchPage);
+  const { isLoading, data } = useFetchData(fetchPage);
   const movies = data?.movies ?? [];
   const totalCount = data?.count ?? 0;
 
@@ -48,7 +48,15 @@ function VideosSection({
   return (
     <section className="videos__section">
       <H4>
-        {displayedMovies === "Home" ? "Top 100" : "Your bookmakered movies"}
+        {displayedMovies === "Home" && category === "All" && "Top 100"}
+        {displayedMovies === "Home" && category !== "All" && category}
+
+        {displayedMovies === "Bookmarks" &&
+          category === "All" &&
+          "Your bookmarked movies"}
+        {displayedMovies === "Bookmarks" &&
+          category !== "All" &&
+          `Your bookmarked movies (${category})`}
       </H4>
       {isLoading ? (
         <Loader />
@@ -78,13 +86,19 @@ function VideosSection({
             })}
         </ul>
       )}
-      {movies.length > 0 && (
+      {movies.length > 0 ? (
         <Pagination
           totalCount={totalCount}
           movies={movies}
           setCurrentPage={setCurrentPage}
           currentPage={currentPage}
         />
+      ) : (
+        <h1 className="movies__msg">
+          {displayedMovies === "Home"
+            ? "No movies found"
+            : "You have 0 bookmarked movies"}
+        </h1>
       )}
     </section>
   );

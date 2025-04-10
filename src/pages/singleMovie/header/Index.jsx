@@ -7,7 +7,7 @@ function SingleMovieHeader(props) {
   return (
     <div className="single__movie__header">
       <div className="single__movie__header__div">
-        <H4>{movie.title}</H4>
+        <H4 className="single__movie__h4">{movie.title}</H4>
         <span className="single__movie__year">({movie.year})</span>
       </div>
       <div className="single__movie__right__div">

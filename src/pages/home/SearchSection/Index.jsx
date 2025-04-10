@@ -11,10 +11,12 @@ function SearchSection({
   displayedMovies,
   setDisplayedMovies,
 }) {
-  const { isLoading, data: categories } = useFetchData(fetchCategories);
+  const { data: categories } = useFetchData(fetchCategories);
 
   const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value);
+    setTimeout(() => {
+      setSearchTerm(event.target.value);
+    }, 500);
   };
 
   const handleCategoryChange = (event) => {

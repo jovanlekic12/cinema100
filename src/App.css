@@ -12,6 +12,12 @@ body {
   padding: 0;
 }
 
+.movies__msg {
+  color: #fc4747;
+  font-size: 2.5rem;
+  text-align: center;
+}
+
 .slider__section,
 .search__section {
   max-width: 110rem;
@@ -95,7 +101,7 @@ body {
   left: -1rem;
 
   transform: translate(0, -50%);
-  z-index: 999;
+  z-index: 98;
 }
 
 .arrow__right {
@@ -103,7 +109,7 @@ body {
   top: 50%;
   transform: translate(0, -50%);
   right: -1rem;
-  z-index: 999;
+  z-index: 98;
 }
 
 .trending__movie__card:hover .trending__movie__img {
@@ -209,7 +215,7 @@ body {
   right: 1%;
   top: 50%;
   transform: translate(0, -50%);
-  z-index: 999;
+  z-index: 99;
 }
 
 .select__input {
@@ -621,6 +627,15 @@ body {
   color: #10141e;
 }
 
+.sidebar__btn,
+.x__icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: none;
+  color: #fff;
+  cursor: pointer;
+}
+
 @keyframes loading {
   from {
     transform: rotate(0turn);
@@ -639,7 +654,8 @@ body {
   }
   .slider__section,
   .search__section,
-  .videos__section {
+  .videos__section,
+  .single__movie__section {
     max-width: 100rem;
   }
   .trending__movie__card {
@@ -665,12 +681,18 @@ body {
   }
   .slider__section,
   .search__section,
-  .videos__section {
+  .videos__section,
+  .single__movie__section {
     max-width: 85rem;
   }
-  .movie__img {
+  .movie__img,
+  .single__movie__card {
     height: 35rem;
     width: 20rem;
+  }
+
+  .react__player {
+    height: 35rem !important;
   }
 
   .slider {
@@ -696,7 +718,8 @@ body {
   }
   .slider__section,
   .search__section,
-  .videos__section {
+  .videos__section,
+  .single__movie__section {
     max-width: 75rem;
   }
   .slider {
@@ -712,14 +735,12 @@ body {
   }
 }
 
-@media (max-width: 800px) {
-}
-
 @media (max-width: 779px) {
   .slider__section,
   .search__section,
   .videos__section,
-  .inner__header {
+  .inner__header,
+  .single__movie__section {
     max-width: 65rem;
   }
   .slider {
@@ -736,15 +757,171 @@ body {
     height: 4rem;
     font-size: 1.5rem;
   }
+  .movie__card__title,
+  .movie__card__p {
+    font-size: 1.2rem;
+  }
+
+  .single__movie__h4,
+  .single__movie__rating__heading {
+    font-size: 1.8rem;
+  }
 }
 
 @media (max-width: 681px) {
+  .slider__section,
+  .search__section,
+  .videos__section,
+  .inner__header,
+  .single__movie__section {
+    max-width: 55rem;
+  }
+  .slider {
+    width: 45rem;
+    height: 20rem;
+  }
+  .trending__movie__card {
+    height: 20rem;
+    width: 10.5rem;
+  }
+  .movie__img,
+  .single__movie__card {
+    height: 30rem;
+    width: 19rem;
+  }
+  .single__movie__h4,
+  .single__movie__rating__heading {
+    font-size: 1.6rem;
+  }
 }
 
 @media (max-width: 581px) {
+  .slider__section,
+  .search__section,
+  .videos__section,
+  .inner__header,
+  .single__movie__section {
+    max-width: 45rem;
+  }
+  .slider {
+    width: 35rem;
+    height: 15rem;
+  }
+  .trending__movie__card {
+    height: 15rem;
+    width: 8rem;
+  }
+
+  .arrow {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .videos__list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .single__movie__h4,
+  .single__movie__rating__heading {
+    font-size: 1.2rem;
+  }
+  .single__movie__video__div {
+    flex-direction: column;
+  }
+  .single__movie__info__container {
+    max-width: none;
+  }
 }
 
 @media (max-width: 481px) {
+  .navbar {
+    position: fixed;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #161d2f;
+    transform: translate(100%, 0);
+    transition: all ease 0.3s;
+    z-index: 999;
+  }
+  .sidebar__btn {
+    display: block;
+  }
+
+  .x__icon {
+    display: block;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+  }
+
+  .navbar__mobile {
+    transform: translate(0, 0);
+  }
+
+  .slider__section,
+  .search__section,
+  .videos__section,
+  .inner__header,
+  .single__movie__section {
+    max-width: 40rem;
+  }
+  .slider {
+    width: 35rem;
+    height: 15rem;
+  }
+  .single__movie__h4,
+  .single__movie__rating__heading {
+    font-size: 1rem;
+  }
+
+  .single__movie__year,
+  .single__movie__right__span,
+  .single__movie__left__span {
+    font-size: 1.2rem;
+  }
+  .single__movie__right__div {
+    gap: 2rem;
+  }
+  .single__movie__info__heading {
+    font-size: 1.6rem;
+  }
+  .single__movie__info__p {
+    font-size: 1.4rem;
+  }
 }
 @media (max-width: 417px) {
+  .slider__section,
+  .search__section,
+  .videos__section,
+  .inner__header,
+  .single__movie__section {
+    max-width: 34rem;
+  }
+
+  .slider {
+    width: 29rem;
+    height: 13rem;
+  }
+
+  .trending__movie__card {
+    height: 13rem;
+    width: 6.5rem;
+  }
+  .search__input {
+    max-width: 15rem;
+  }
+  .movie__img,
+  .single__movie__card {
+    height: 28rem;
+    width: 17rem;
+  }
+  .movie__card__p,
+  .movie__card__title {
+    font-size: 1rem;
+  }
 }
