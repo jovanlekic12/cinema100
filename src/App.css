@@ -911,6 +911,9 @@ body {
   .form {
     width: 60%;
   }
+  .pagination__div {
+    gap: 0.5rem;
+  }
 }
 @media (max-width: 417px) {
   .slider__section,
@@ -947,5 +950,14 @@ body {
   .movie__card__p,
   .movie__card__title {
     font-size: 1rem;
+  }
+
+  .pagination__btn {
+    font-size: 1.6rem;
+    padding: 0.2rem 0.8rem;
+  }
+  .pagination__arrow {
+    font-size: 1.2rem;
+    padding: 0.6rem 0.8rem;
   }
 }
