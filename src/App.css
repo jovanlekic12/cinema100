@@ -914,6 +914,9 @@ body {
   .pagination__div {
     gap: 0.5rem;
   }
+  .redirect__div {
+    flex-wrap: wrap;
+  }
 }
 @media (max-width: 417px) {
   .slider__section,

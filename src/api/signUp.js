@@ -1,19 +1,15 @@
 import { supabase } from "../supabase/supabase";
 
-export async function SignUpUser() {
-  try {
-    const { data, err } = await supabase.auth.signUp({
-      email: formData.email,
-      password: formData.password,
-      options: {
-        data: {
-          name: formData.name,
-          lastName: formData.lastName,
-        },
+export async function SignUpUser(email, password, name, lastName) {
+  const { data, err } = await supabase.auth.signUp({
+    email: email,
+    password: password,
+    options: {
+      data: {
+        name: name,
+        lastName: lastName,
       },
-    });
-    alert("Check your email for verification link");
-  } catch (err) {
-    console.error(err);
-  }
+    },
+  });
+  return data, err;
 }

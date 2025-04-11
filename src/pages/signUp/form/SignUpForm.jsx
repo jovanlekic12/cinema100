@@ -7,6 +7,8 @@ import { useNavigate } from "react-router";
 function SignUpForm(props) {
   let navigate = useNavigate();
 
+  const [error, setError] = useState(null);
+
   const [formData, setFormData] = useState({
     name: "",
     lastName: "",
@@ -25,20 +27,30 @@ function SignUpForm(props) {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    try {
-      const { data, err } = await supabase.auth.signUp({
-        email: formData.email,
-        password: formData.password,
-        options: {
-          data: {
-            name: formData.name,
-            lastName: formData.lastName,
-          },
+    setError(null);
+    if (
+      !formData.email ||
+      !formData.password ||
+      !formData.name ||
+      !formData.lastName
+    ) {
+      setError("You have to fill up all fields!");
+      return;
+    }
+
+    const { data, error } = await supabase.auth.signUp({
+      email: formData.email,
+      password: formData.password,
+      options: {
+        data: {
+          name: formData.name,
+          lastName: formData.lastName,
         },
-      });
-      alert("Check your email for verification link");
-    } catch (err) {
-      console.error(err);
+      },
+    });
+    if (error) {
+      setError(error.message);
+      return;
     }
   }
 
@@ -47,6 +59,8 @@ function SignUpForm(props) {
       <h2 className="form__heading">Sign Up</h2>
       <InputsDiv handleChange={handleChange} />
       <Button className="submit__btn">Sign Up</Button>
+      {error && <p className="error__msg">{error}</p>}
+
       <div className="redirect__div">
         <p className="redirect__p">Already have an account?</p>
         <Button className="redirect__btn" onClick={() => navigate("/")}>
