@@ -2,8 +2,10 @@ import { CiSearch } from "react-icons/ci";
 import { PiBookmarkSimpleFill } from "react-icons/pi";
 import { IoHome } from "react-icons/io5";
 import Button from "../../../components/Button";
-import { fetchBookmarks, fetchCategories } from "../../../api/movies";
+import { fetchCategories } from "../../../api/movies";
 import { useFetchData } from "../../../api/useFetchData";
+import debounce from "lodash.debounce";
+import { useCallback } from "react";
 function SearchSection({
   setSearchTerm,
   setCategory,
@@ -14,10 +16,10 @@ function SearchSection({
   const { data: categories } = useFetchData(fetchCategories);
 
   const handleSearchChange = (event) => {
-    setTimeout(() => {
-      setSearchTerm(event.target.value);
-    }, 500);
+    setSearchTerm(event.target.value);
   };
+
+  const debouncedSearch = useCallback(debounce(handleSearchChange, 300), []);
 
   const handleCategoryChange = (event) => {
     setCategory(event.target.value);
@@ -27,7 +29,7 @@ function SearchSection({
     <section className="search__section">
       <div className="search__div">
         <input
-          onChange={handleSearchChange}
+          onChange={debouncedSearch}
           type="text"
           className="search__input"
           placeholder="Search..."
@@ -81,8 +83,5 @@ function SearchSection({
 }
 export default SearchSection;
 
-//napravi reusable input komponentu
 //vidji za root klase
 //vidji mozes li napravit button da prima varijaciju a ne klasu
-//vidji za debounce
-//stavi da su buttoni disable dok traje request

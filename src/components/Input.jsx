@@ -1,5 +1,19 @@
-function Input(props) {
-  return <input type={type} />;
+function Input({
+  type = "text",
+  name,
+  placeholder,
+  handleChange,
+  className = "form__input",
+}) {
+  return (
+    <input
+      onChange={handleChange}
+      type={type}
+      name={name}
+      placeholder={placeholder}
+      className={className}
+    />
+  );
 }
 
-return Input;
+export default Input;

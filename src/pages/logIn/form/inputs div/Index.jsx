@@ -1,14 +1,15 @@
+import Input from "../../../../components/Input";
+
 function InputsDiv({ handleChange }) {
   return (
     <div className="form__inputs__div">
-      <input
-        type="text"
+      <Input
         className="form__input"
         name="email"
         placeholder="Email"
         onChange={handleChange}
       />
-      <input
+      <Input
         type="password"
         className="form__input"
         name="password"

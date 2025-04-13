@@ -23,19 +23,10 @@ function MovieCard(props) {
       getBookmarks();
     }, 500);
   }
-  // const rootClass = (type = "highlight"
-  //   ? "trending__movie__card"
-  //   : "movie__card");
+  let rootClass = type === "highlight" ? "trending__movie" : "movie";
   return (
-    <article
-      className={type === "highlight" ? "trending__movie__card" : "movie__card"}
-    >
-      <img
-        src={image}
-        alt=""
-        className={type === "highlight" ? "trending__movie__img" : "movie__img"}
-      />
-      ;
+    <article className={`${rootClass}__card`}>
+      <img src={image} alt="" className={`${rootClass}__img`} />;
       <Button
         className={
           isBookmarked ? "bookmarked__btn bookmark__btn" : "bookmark__btn"

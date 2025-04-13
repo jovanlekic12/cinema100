@@ -1,36 +1,23 @@
+import Input from "../../../../components/Input";
+
 function InputsDiv({ handleChange }) {
   return (
     <div className="form__inputs__div">
-      <input
-        onChange={handleChange}
-        type="text"
-        className="form__input"
-        name="name"
-        placeholder="Name"
-      />
-      <input
-        onChange={handleChange}
-        type="text"
+      <Input handleChange={handleChange} name="name" placeholder="Name" />
+      <Input
+        handleChange={handleChange}
         name="lastName"
-        className="form__input"
-        placeholder="lastName"
+        placeholder="Last Name"
       />
-      <input
-        onChange={handleChange}
-        type="text"
-        className="form__input"
-        name="email"
-        placeholder="Email"
-      />
-
-      <input
-        onChange={handleChange}
-        type="password"
-        className="form__input"
+      <Input handleChange={handleChange} name="email" placeholder="Email" />
+      <Input
+        handleChange={handleChange}
         name="password"
         placeholder="Password"
+        type="password"
       />
     </div>
   );
 }
+
 export default InputsDiv;
