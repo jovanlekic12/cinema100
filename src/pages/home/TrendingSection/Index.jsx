@@ -10,18 +10,43 @@ import Loader from "../../../components/Loader";
 function TrendingSection({ bookmarks, getBookmarks, displayedMovies }) {
   const [moveIndex, setMoveIndex] = useState(0);
   const { isLoading, data: trendingMovies } = useFetchData(fetchTrendingMovies);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (windowWidth > 581) setMoveIndex(0);
+  }, [windowWidth]);
+
+  let number = windowWidth < 581 ? 8 : 4;
 
   function handleSlide(side) {
+    console.log(number);
     if (side === "left") {
-      setMoveIndex((prevIndex) => (prevIndex === 0 ? 4 - 1 : prevIndex - 1));
+      setMoveIndex((prevIndex) =>
+        prevIndex === 0 ? number - 1 : prevIndex - 1
+      );
     } else if (side === "right") {
-      setMoveIndex((prevIndex) => (prevIndex === 4 - 1 ? 0 : prevIndex + 1));
+      setMoveIndex((prevIndex) =>
+        prevIndex === number - 1 ? 0 : prevIndex + 1
+      );
     }
+    console.log(moveIndex);
   }
 
   return (
     <section className="slider__section">
-      <TrendingHeader moveIndex={moveIndex}></TrendingHeader>
+      <TrendingHeader
+        moveIndex={moveIndex}
+        windowWidth={windowWidth}
+      ></TrendingHeader>
       {isLoading ? (
         <Loader />
       ) : (
@@ -31,6 +56,7 @@ function TrendingSection({ bookmarks, getBookmarks, displayedMovies }) {
           bookmarks={bookmarks}
           getBookmarks={getBookmarks}
           displayedMovies={displayedMovies}
+          windowWidth={windowWidth}
         ></TrendingSlider>
       )}
       <Button className="arrow arrow__left" onClick={() => handleSlide("left")}>

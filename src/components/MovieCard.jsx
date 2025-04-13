@@ -6,8 +6,7 @@ import { useCallback, useEffect, useState } from "react";
 import { fetchBookmarks } from "../api/movies";
 import { useFetchData } from "../api/useFetchData";
 function MovieCard(props) {
-  const { image, imdbid, type, bookmarks, getBookmarks, displayedMovies } =
-    props;
+  const { image, imdbid, type, bookmarks, getBookmarks } = props;
   const [isBookmarked, setIsBookmarked] = useState(false);
   let navigate = useNavigate();
 
@@ -17,12 +16,16 @@ function MovieCard(props) {
       setIsBookmarked(contains);
     }
   }, [bookmarks]);
+
   function bookmarkHandler() {
     toggleBookmark(imdbid);
     setTimeout(() => {
       getBookmarks();
     }, 500);
   }
+  // const rootClass = (type = "highlight"
+  //   ? "trending__movie__card"
+  //   : "movie__card");
   return (
     <article
       className={type === "highlight" ? "trending__movie__card" : "movie__card"}

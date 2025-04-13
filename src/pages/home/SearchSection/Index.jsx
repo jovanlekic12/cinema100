@@ -80,3 +80,9 @@ function SearchSection({
   );
 }
 export default SearchSection;
+
+//napravi reusable input komponentu
+//vidji za root klase
+//vidji mozes li napravit button da prima varijaciju a ne klasu
+//vidji za debounce
+//stavi da su buttoni disable dok traje request

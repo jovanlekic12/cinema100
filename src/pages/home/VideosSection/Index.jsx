@@ -7,7 +7,6 @@ import MovieCard from "../../../components/MovieCard";
 import Pagination from "./Pagination/Index";
 import { IoMdStar } from "react-icons/io";
 import Loader from "../../../components/Loader";
-import { toggleBookmark } from "../../../api/toogleBookmark";
 function VideosSection({
   searchTerm,
   category,

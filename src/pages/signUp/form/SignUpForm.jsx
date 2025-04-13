@@ -3,6 +3,7 @@ import Button from "../../../components/Button";
 import InputsDiv from "./inputs div/Index";
 import { supabase } from "../../../supabase/supabase";
 import { useNavigate } from "react-router";
+import { SignUpUser } from "../../../api/signUp";
 
 function SignUpForm(props) {
   let navigate = useNavigate();
@@ -24,32 +25,30 @@ function SignUpForm(props) {
       };
     });
   }
-
+  const errorMap = {
+    name: "You must enter first name",
+    lastName: "You must enter last name",
+    email: "You must enter email",
+    password: "You must enter password",
+  };
   async function handleSubmit(event) {
     event.preventDefault();
     setError(null);
-    if (
-      !formData.email ||
-      !formData.password ||
-      !formData.name ||
-      !formData.lastName
-    ) {
-      setError("You have to fill up all fields!");
-      return;
+    for (let key in formData) {
+      if (formData[key] === "") {
+        setError(errorMap[key]);
+        return;
+      }
     }
 
-    const { data, error } = await supabase.auth.signUp({
-      email: formData.email,
-      password: formData.password,
-      options: {
-        data: {
-          name: formData.name,
-          lastName: formData.lastName,
-        },
-      },
-    });
-    if (error) {
-      setError(error.message);
+    const { error: err } = await SignUpUser(
+      formData.email,
+      formData.password,
+      formData.name,
+      formData.lastName
+    );
+    if (err) {
+      setError(err.message);
       return;
     }
   }

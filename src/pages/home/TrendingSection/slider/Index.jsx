@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import MovieCard from "../../../../components/MovieCard";
 
 function TrendingSlider(props) {
@@ -7,13 +8,26 @@ function TrendingSlider(props) {
     bookmarks,
     getBookmarks,
     displayedMovies,
+    windowWidth,
   } = props;
+
+  console.log(window.innerWidth);
+
+  const [translateWidth, setTranslateWidth] = useState(0);
+
+  useEffect(() => {
+    windowWidth < 581
+      ? setTranslateWidth(moveIndex * 12.5)
+      : setTranslateWidth(moveIndex * 25);
+  }, [moveIndex]);
 
   return (
     <div className="slider">
       <div
         className="trending__movies__list"
-        style={{ transform: `translateX(-${moveIndex * 25}%)` }}
+        style={{
+          transform: `translateX(-${translateWidth}%)`,
+        }}
       >
         {trendingMovies &&
           trendingMovies.map((movie) => {
