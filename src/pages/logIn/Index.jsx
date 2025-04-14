@@ -1,4 +1,3 @@
-import Button from "../../components/Button";
 import LogInForm from "./form/LogInForm";
 
 function LogIn({ setToken }) {

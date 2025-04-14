@@ -1,8 +1,5 @@
-import { useState } from "react";
 import { supabase } from "../supabase/supabase";
 export async function toggleBookmark(movieId) {
-  const [isLoading, setIsLoading] = useState(false);
-
   const {
     data: { user },
     error: userError,
@@ -14,7 +11,6 @@ export async function toggleBookmark(movieId) {
   }
 
   try {
-    setIsLoading(true);
     const { data: existing, error: fetchError } = await supabase
       .from("bookmarks")
       .select("*")
@@ -46,9 +42,5 @@ export async function toggleBookmark(movieId) {
     }
   } catch (err) {
     console.error("Unexpected error toggling bookmark:", err);
-  } finally {
-    setIsLoading(false);
   }
-
-  return { isLoading };
 }

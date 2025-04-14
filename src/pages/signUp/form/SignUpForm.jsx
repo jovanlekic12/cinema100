@@ -1,11 +1,10 @@
 import { useState } from "react";
 import Button from "../../../components/Button";
 import InputsDiv from "./inputs div/Index";
-import { supabase } from "../../../supabase/supabase";
 import { useNavigate } from "react-router";
 import { SignUpUser } from "../../../api/signUp";
 
-function SignUpForm(props) {
+function SignUpForm(p) {
   let navigate = useNavigate();
 
   const [error, setError] = useState(null);
@@ -57,12 +56,14 @@ function SignUpForm(props) {
     <form className="form" onSubmit={handleSubmit}>
       <h2 className="form__heading">Sign Up</h2>
       <InputsDiv handleChange={handleChange} />
-      <Button className="submit__btn">Sign Up</Button>
+      <Button variant="submit" type="squared">
+        Sign Up
+      </Button>
       {error && <p className="error__msg">{error}</p>}
 
       <div className="redirect__div">
         <p className="redirect__p">Already have an account?</p>
-        <Button className="redirect__btn" onClick={() => navigate("/")}>
+        <Button variant="redirect" onClick={() => navigate("/")}>
           Log In
         </Button>
       </div>

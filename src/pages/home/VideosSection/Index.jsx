@@ -85,14 +85,15 @@ function VideosSection({
             })}
         </ul>
       )}
-      {movies.length > 0 ? (
+      {totalCount > 12 && (
         <Pagination
           totalCount={totalCount}
           movies={movies}
           setCurrentPage={setCurrentPage}
           currentPage={currentPage}
         />
-      ) : (
+      )}
+      {movies.length === 0 && (
         <h1 className="movies__msg">
           {displayedMovies === "Home"
             ? "No movies found"

@@ -9,7 +9,9 @@ function Pagination({ setCurrentPage, currentPage, totalCount }) {
   return (
     <div className="pagination__div">
       <Button
-        className="pagination__btn pagination__arrow"
+        color="grey"
+        type="squared"
+        variant="pagination"
         onClick={() => setCurrentPage((prev) => (prev === 1 ? 1 : prev - 1))}
       >
         <FaArrowLeftLong />
@@ -17,11 +19,10 @@ function Pagination({ setCurrentPage, currentPage, totalCount }) {
       {pages.map((page, index) => {
         return (
           <Button
-            className={
-              page === currentPage
-                ? "pagination__btn active__btn"
-                : "pagination__btn"
-            }
+            isActive={page === currentPage ? "active" : ""}
+            color="grey"
+            type="squared"
+            variant="pagination"
             key={index}
             onClick={() => setCurrentPage(page)}
           >
@@ -30,7 +31,9 @@ function Pagination({ setCurrentPage, currentPage, totalCount }) {
         );
       })}
       <Button
-        className="pagination__btn pagination__arrow"
+        color="grey"
+        type="squared"
+        variant="pagination"
         onClick={() => setCurrentPage((prev) => (prev === 9 ? 9 : prev + 1))}
       >
         <FaArrowRightLong />

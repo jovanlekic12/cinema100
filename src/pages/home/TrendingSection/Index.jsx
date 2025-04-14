@@ -59,11 +59,18 @@ function TrendingSection({ bookmarks, getBookmarks, displayedMovies }) {
           windowWidth={windowWidth}
         ></TrendingSlider>
       )}
-      <Button className="arrow arrow__left" onClick={() => handleSlide("left")}>
+      <Button
+        type="round"
+        size="hd"
+        position="left"
+        onClick={() => handleSlide("left")}
+      >
         <FaArrowLeftLong />
       </Button>
       <Button
-        className="arrow arrow__right"
+        type="round"
+        size="hd"
+        position="right"
         onClick={() => handleSlide("right")}
       >
         <FaArrowRightLong />

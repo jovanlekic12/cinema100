@@ -53,7 +53,7 @@ function SearchSection({
         </select>
         <div className="boomarks__btns__div">
           <Button
-            className="bookmarks__btn"
+            type="bookmarks"
             onClick={() => setDisplayedMovies("Bookmarks")}
           >
             <PiBookmarkSimpleFill
@@ -64,10 +64,7 @@ function SearchSection({
               }
             />
           </Button>
-          <Button
-            className="bookmarks__btn"
-            onClick={() => setDisplayedMovies("Home")}
-          >
+          <Button type="bookmarks" onClick={() => setDisplayedMovies("Home")}>
             <IoHome
               className={
                 displayedMovies === "Home"
@@ -82,6 +79,3 @@ function SearchSection({
   );
 }
 export default SearchSection;
-
-//vidji za root klase
-//vidji mozes li napravit button da prima varijaciju a ne klasu

@@ -91,25 +91,7 @@ body {
   align-items: center;
   justify-content: center;
   border: 0;
-  font-size: 2rem;
   cursor: pointer;
-}
-
-.arrow__left {
-  position: absolute;
-  top: 50%;
-  left: -1rem;
-
-  transform: translate(0, -50%);
-  z-index: 98;
-}
-
-.arrow__right {
-  position: absolute;
-  top: 50%;
-  transform: translate(0, -50%);
-  right: -1rem;
-  z-index: 98;
 }
 
 .trending__movie__card:hover .trending__movie__img {
@@ -118,27 +100,114 @@ body {
   cursor: pointer;
 }
 
-.bookmark__btn {
-  display: none;
-  position: absolute;
-  background-color: #202022cc;
+.btn {
+  outline: none;
   border: 0;
-  width: 3.5rem;
-  height: 3.5rem;
-  top: 0.5rem;
-  right: 0.5rem;
-  border-radius: 50%;
+  display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.bookmark__btn:hover {
-  background-color: #ffffff;
-  opacity: 0.7;
   cursor: pointer;
 }
 
-.bookmark__btn:hover .bookmark__icon {
+.btn-round {
+  border-radius: 50%;
+}
+
+.btn-squared {
+  border-radius: 1rem;
+}
+
+.btn-black {
+  background-color: #202022cc;
+  color: #fff;
+}
+
+.btn-black:hover {
+  background-color: #ffffff;
+  color: #10141e;
+  opacity: 0.7;
+}
+
+.btn-grey {
+  background-color: hsl(0, 0%, 75%);
+}
+
+.btn-pagination {
+  font-size: 1.8rem;
+  padding: 0.5rem 1rem;
+}
+
+.btn-active {
+  background-color: #fc4747;
+}
+
+.btn-sd {
+  font-size: 1rem;
+  padding: 0.6rem 0.6rem;
+}
+
+.btn-md {
+  font-size: 1.2rem;
+  padding: 1rem 1rem;
+}
+
+.btn-hd {
+  font-size: 1.8rem;
+  padding: 1.4rem 1.4rem;
+}
+
+.btn-left {
+  position: absolute;
+  top: 50%;
+  left: -1rem;
+  transform: translate(0, -50%);
+  z-index: 98;
+}
+
+.btn-right {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  right: -1rem;
+  z-index: 98;
+}
+
+.btn-center {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+}
+
+.btn-up-right {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+}
+
+.btn-transparent {
+  background: none;
+}
+
+.btn-ghost {
+  display: none;
+}
+
+.btn-submit {
+  background-color: #fc4747;
+  width: 100%;
+  font-size: 1.6rem;
+  padding: 0.8rem 1.6rem;
+  color: #fff;
+}
+
+.btn-redirect {
+  color: #fc4747;
+  background: none;
+  font-size: inherit;
+}
+
+.btn:hover .bookmark__icon {
   color: #10141e;
 }
 
@@ -148,35 +217,11 @@ body {
   color: #fff;
 }
 
-.trending__movie__card:hover .bookmark__btn {
+.trending__movie__card:hover .btn {
   display: flex;
 }
 
-.see__more__btn {
-  position: absolute;
-  background-color: #202022cc;
-  top: 50%;
-  right: 50%;
-  transform: translate(50%, -50%);
-  display: none;
-  align-items: center;
-  color: #fff;
-  font-size: 1.6rem;
-  font-weight: 200;
-  padding: 0.8rem 2rem;
-  border: 0;
-  gap: 1rem;
-  width: max-content;
-  border-radius: 1rem;
-}
-
-.trending__movie__card:hover .see__more__btn {
-  display: flex;
-}
-
-.see__more__btn:hover {
-  background-color: #ffffff;
-  color: #10141e;
+.card__btn:hover {
   cursor: pointer;
   opacity: 0.7;
 }
@@ -290,11 +335,7 @@ body {
   cursor: pointer;
 }
 
-.movie__card:hover .see__more__btn {
-  display: flex;
-}
-
-.movie__card:hover .bookmark__btn {
+.movie__card:hover .btn {
   display: flex;
 }
 
@@ -309,8 +350,7 @@ body {
 
 .pagination__btn {
   border: 0;
-  font-size: 1.8rem;
-  padding: 0.5rem 1rem;
+
   border-radius: 1rem;
   cursor: pointer;
   background-color: hsl(0, 0%, 75%);
@@ -476,6 +516,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
+  margin-bottom: 1.6rem;
 }
 
 .form__input {
@@ -519,18 +560,6 @@ body {
 
 .redirect__p {
   color: hsl(0, 0%, 75%);
-}
-
-.redirect__btn {
-  color: #fc4747;
-  background: none;
-  border: none;
-  cursor: pointer;
-  display: inline-block;
-  font-family: inherit;
-  font-weight: 400;
-  transition: all 0.3s;
-  font-size: inherit;
 }
 
 .error__msg {
@@ -578,14 +607,6 @@ body {
   display: flex;
   align-items: center;
   gap: 2rem;
-}
-
-.logout__btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
 }
 
 .logout__icon {

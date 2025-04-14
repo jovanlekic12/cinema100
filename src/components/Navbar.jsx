@@ -27,7 +27,7 @@ function Navbar({ token }) {
           </h3>
           <div className="logout__div">
             <h3 className="navbar__msg">Log out</h3>
-            <Button onClick={handleLogout} className="logout__btn">
+            <Button onClick={handleLogout} variant="transparent">
               <RiShutDownLine className="logout__icon" />
             </Button>
           </div>

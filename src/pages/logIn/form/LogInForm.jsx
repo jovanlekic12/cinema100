@@ -29,6 +29,7 @@ function LogInForm({ setToken, token }) {
         [event.target.name]: event.target.value,
       };
     });
+    console.log(formData);
   }
 
   async function handleSubmit(event) {
@@ -47,18 +48,20 @@ function LogInForm({ setToken, token }) {
       <form onSubmit={handleSubmit}>
         <h2 className="form__heading">Log In</h2>
         <InputsDiv handleChange={handleChange} />
-        <Button className="submit__btn">Log In</Button>
+        <Button variant="submit" type="squared">
+          Log In
+        </Button>
         {error && <p className="error__msg">{error}</p>}
         <div className="redirect__div">
           <p className="redirect__p">Don't have an account?</p>
-          <Button className="redirect__btn" onClick={() => navigate("/signUp")}>
+          <Button variant="redirect" onClick={() => navigate("/signUp")}>
             Sign up
           </Button>
         </div>
       </form>
       <div className="redirect__div">
         <p className="redirect__p">Or,</p>
-        <Button className="redirect__btn" onClick={() => logInAsGuest()}>
+        <Button variant="redirect" onClick={() => logInAsGuest()}>
           Log In as a guest
         </Button>
       </div>
