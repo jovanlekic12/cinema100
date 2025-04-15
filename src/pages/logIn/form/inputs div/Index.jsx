@@ -7,7 +7,7 @@ function InputsDiv({ handleChange }) {
         className="form__input"
         name="email"
         placeholder="Email"
-        onChange={(e) => handleChange(e)}
+        onChange={handleChange}
       />
       <Input
         type="password"

@@ -2,12 +2,12 @@ function Input({
   type = "text",
   name,
   placeholder,
-  handleChange,
+  onChange,
   className = "form__input",
 }) {
   return (
     <input
-      onChange={handleChange}
+      onChange={onChange}
       type={type}
       name={name}
       placeholder={placeholder}

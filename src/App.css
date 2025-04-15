@@ -281,6 +281,12 @@ body {
   border: none;
 }
 
+.bookmarks__btns__div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .bookmarks__icon {
   height: 2.8rem;
   width: 2.8rem;
@@ -774,11 +780,6 @@ body {
     width: 13rem;
   }
 
-  .arrow {
-    width: 4rem;
-    height: 4rem;
-    font-size: 1.5rem;
-  }
   .movie__card__title,
   .movie__card__p {
     font-size: 1.2rem;
@@ -819,6 +820,11 @@ body {
   .form {
     width: 70%;
   }
+
+  .btn-hd {
+    font-size: 1.4rem;
+    padding: 1rem 1rem;
+  }
 }
 
 @media (max-width: 581px) {
@@ -841,10 +847,6 @@ body {
   .trending__movies__list {
     gap: 0;
   }
-  .arrow {
-    width: 3rem;
-    height: 3rem;
-  }
 
   .videos__list {
     grid-template-columns: repeat(2, 1fr);
@@ -859,8 +861,7 @@ body {
   .single__movie__info__container {
     max-width: none;
   }
-  .form__input,
-  .submit__btn {
+  .form__input {
     font-size: 1.2rem;
   }
 
@@ -908,10 +909,7 @@ body {
   .form__container {
     max-width: 40rem;
   }
-  .slider {
-    width: 35rem;
-    height: 15rem;
-  }
+
   .single__movie__h4,
   .single__movie__rating__heading {
     font-size: 1rem;
@@ -958,12 +956,11 @@ body {
 
   .slider {
     width: 29rem;
-    height: 13rem;
   }
 
   .trending__movie__card {
-    height: 13rem;
-    width: 6.5rem;
+    height: 28rem;
+    width: 14.5rem;
   }
   .search__input {
     max-width: 15rem;
@@ -978,7 +975,7 @@ body {
     font-size: 1rem;
   }
 
-  .pagination__btn {
+  .btn-pagination {
     font-size: 1.6rem;
     padding: 0.2rem 0.8rem;
   }

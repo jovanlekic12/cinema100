@@ -51,9 +51,9 @@ function SearchSection({
               );
             })}
         </select>
-        <div className="boomarks__btns__div">
+        <div className="bookmarks__btns__div">
           <Button
-            type="bookmarks"
+            variant="transparent"
             onClick={() => setDisplayedMovies("Bookmarks")}
           >
             <PiBookmarkSimpleFill
@@ -64,7 +64,10 @@ function SearchSection({
               }
             />
           </Button>
-          <Button type="bookmarks" onClick={() => setDisplayedMovies("Home")}>
+          <Button
+            variant="transparent"
+            onClick={() => setDisplayedMovies("Home")}
+          >
             <IoHome
               className={
                 displayedMovies === "Home"

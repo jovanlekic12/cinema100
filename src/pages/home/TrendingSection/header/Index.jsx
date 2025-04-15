@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import H4 from "../../../../components/h4";
 function TrendingHeader({ moveIndex, windowWidth }) {
   let array = ["", "", "", ""];
