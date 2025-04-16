@@ -48,20 +48,18 @@ function LogInForm({ setToken, token }) {
       <form onSubmit={handleSubmit}>
         <h2 className="form__heading">Log In</h2>
         <InputsDiv handleChange={handleChange} />
-        <Button variant="submit" type="squared">
-          Log In
-        </Button>
+        <Button type="submit">Log In</Button>
         {error && <p className="error__msg">{error}</p>}
         <div className="redirect__div">
           <p className="redirect__p">Don't have an account?</p>
-          <Button variant="redirect" onClick={() => navigate("/signUp")}>
+          <Button type="redirect" onClick={() => navigate("/signUp")}>
             Sign up
           </Button>
         </div>
       </form>
       <div className="redirect__div">
         <p className="redirect__p">Or,</p>
-        <Button variant="redirect" onClick={() => logInAsGuest()}>
+        <Button type="redirect" onClick={() => logInAsGuest()}>
           Log In as a guest
         </Button>
       </div>

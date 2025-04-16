@@ -1,8 +1,8 @@
 function Button({
   children,
   onClick,
-  type,
-  size,
+  type = "standard",
+  size = "default",
   position,
   variant,
   isActive,

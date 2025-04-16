@@ -27,12 +27,8 @@ function MovieCard(props) {
     <article className={`${rootClass}__card`}>
       <img src={image} alt="" className={`${rootClass}__img`} />;
       <Button
-        position="up-right"
-        variant="ghost"
-        type="round"
-        color="black"
-        size="sd"
-        isActive={isBookmarked ? "btn-bookmarked" : ""}
+        type="bookmark"
+        isActive={isBookmarked ? "bookmarked" : ""}
         onClick={bookmarkHandler}
       >
         <CiBookmark
@@ -41,14 +37,7 @@ function MovieCard(props) {
           }
         />
       </Button>
-      <Button
-        position="center"
-        variant="ghost"
-        color="black"
-        type="squared"
-        size="md"
-        onClick={() => navigate(`/movie/${imdbid}`)}
-      >
+      <Button type="card" onClick={() => navigate(`/movie/${imdbid}`)}>
         See more
         <CiSearch className="search__icon" />
       </Button>
