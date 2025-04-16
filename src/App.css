@@ -85,13 +85,14 @@ body {
 .arrow {
   background-color: white;
   border-radius: 50%;
-  width: 5rem;
-  height: 5rem;
+  width: 4rem;
+  height: 4rem;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 0;
   cursor: pointer;
+  font-size: 2rem;
 }
 
 .trending__movie__card:hover .trending__movie__img {
@@ -166,7 +167,7 @@ body {
   padding: 1.4rem 1.4rem;
 }
 
-.btn-left {
+.arrow__left {
   position: absolute;
   top: 50%;
   left: -1rem;
@@ -174,7 +175,7 @@ body {
   z-index: 98;
 }
 
-.btn-right {
+.arrow__right {
   position: absolute;
   top: 50%;
   transform: translate(0, -50%);
@@ -843,6 +844,10 @@ body {
   .form__container {
     max-width: 45rem;
   }
+  .arrow {
+    font-size: 1.4rem;
+  }
+
   .slider {
     width: 35rem;
     height: 28rem;
